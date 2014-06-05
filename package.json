@@ -1,0 +1,27 @@
+{
+  "name": "BandHacks",
+  "version": "0.0.0",
+  "description": "BandHacks!",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cberkay/BandHacks.git"
+  },
+  "keywords": [
+    "bandhacks",
+    "heroku"
+  ],
+  "author": "Berkay & Dylan",
+  "license": "(BSD-2-Clause) MIT",
+  "bugs": {
+    "url": "https://github.com/cberkay/BandHacks/issues"
+  },
+  "homepage": "https://github.com/cberkay/BandHacks",
+  "dependencies": {
+    "express": "^4.4.1",
+    "logfmt": "^1.1.2"
+  }
+}
