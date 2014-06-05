@@ -1,5 +1,4 @@
 // web.js
-console.log(111111);
 var express = require("express");
 var logfmt = require("logfmt");
 var app = express();
