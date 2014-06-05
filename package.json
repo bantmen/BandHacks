@@ -19,9 +19,11 @@
   "bugs": {
     "url": "https://github.com/cberkay/BandHacks/issues"
   },
-  "homepage": "https://github.com/cberkay/BandHacks",
   "dependencies": {
     "express": "^4.4.1",
     "logfmt": "^1.1.2"
+  },
+  "engines": {
+		"node": "0.10.x"
   }
 }
