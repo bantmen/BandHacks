@@ -1,16 +1,16 @@
 //http://stackoverflow.com/questions/21758779/node-js-express-js-hogan-js-returns-a-blank-page-sometimes
 var
-http = require('http'),
-path = require('path'),
-fs = require('fs');
+    http = require('http'),
+    path = require('path'),
+    fs = require('fs');
 
 function getFile(filePath,res,page404){
     fs.exists(filePath,function(exists){
         if(exists){
             fs.readFile(filePath, function(err,contents){
                 if(!err){
-					//console.log(filePath);
-					res.writeHead(200, {'Content-Type': 'text/html'});
+                    //console.log(filePath);
+                    res.writeHead(200, {'Content-Type': 'text/html'});
                     res.end(contents);
                 } else {
                     console.dir(err);
@@ -19,7 +19,7 @@ function getFile(filePath,res,page404){
         } else {
             fs.readFile(page404, function(err,contents){
                 if(!err){
-					console.log(page404);
+                    console.log(page404);
                     res.writeHead(404, {'Content-Type': 'text/html'});
                     res.end(contents);
                 } else {
@@ -30,11 +30,11 @@ function getFile(filePath,res,page404){
     });
 };
 
-function requestHandler(req, res) {
+function requestHandler(req, res) {   //request, respond
     var
-    fileName = path.basename(req.url) || 'index.html',
-    localFolder = __dirname + '\\',
-    page404 = localFolder + '404.html';
+        fileName = path.basename(req.url) || 'index.html',
+        localFolder = __dirname + '\\',
+        page404 = localFolder + '404.html';
 //	console.log(fileName);
 //	console.log(localFolder);
 
