@@ -42,4 +42,4 @@ function requestHandler(req, res) {
 };
 
 
-http.createServer(requestHandler).listen(5000); 
+http.createServer(requestHandler).listen(Number(process.env.PORT || 5000)); 
