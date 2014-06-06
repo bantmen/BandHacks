@@ -6,25 +6,29 @@ var
 
 function getFile(filePath,res,page404){
     fs.exists(filePath,function(exists){
-        if(exists){
-            fs.readFile(filePath, function(err,contents){
-                if(!err){
-                    //console.log(filePath);
-                    res.writeHead(200, {'Content-Type': 'text/html'});
-                    res.end(contents);
-                } else {
-                    console.dir(err);
-                };
-            });
-        } else {
-            fs.readFile(page404, function(err,contents){
-                if(!err){
+        if (!exists) {
+            fs.readFile(page404, function (err, contents) {
+                if (!err) {
                     console.log(page404);
                     res.writeHead(404, {'Content-Type': 'text/html'});
-                    res.end(contents);
+                    res.write(contents);
+                    res.end();
                 } else {
                     console.dir(err);
-                };
+                }
+                ;
+            });
+        } else {
+            fs.readFile(filePath, function (err, contents) {
+                if (!err) {
+                    console.log(filePath);
+                    res.writeHead(200, {'Content-Type': 'text/html'});
+                    res.write(contents);
+                    res.end();
+                } else {
+                    console.dir(err);
+                }
+                ;
             });
         };
     });
@@ -40,6 +44,5 @@ function requestHandler(req, res) {   //request, respond
 
     getFile((localFolder + fileName),res,page404);
 };
-
 
 http.createServer(requestHandler).listen(Number(process.env.PORT || 5000)); 
