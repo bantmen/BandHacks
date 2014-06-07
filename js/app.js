@@ -1,4 +1,6 @@
-App = Ember.Application.create();
+var App = Ember.Application.create({
+	LOG_TRANSITIONS: true; //helps with debugging
+});
 
 App.Router.map(function() {
   // put your routes here
