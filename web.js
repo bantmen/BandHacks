@@ -2,7 +2,24 @@
 var
     http = require('http'),
     path = require('path'),
-    fs = require('fs');
+    fs = require('fs'),
+	passport = require('passport'),
+    FacebookStrategy = require('passport-facebook').Strategy;
+	
+
+passport.use(new FacebookStrategy({
+	clientID: "654765054608952",
+	clientSecret: "32f8a00e838b2c8aa722eafb936b684c",
+	callbackURL: "http://localhost:5000/"
+	},
+	function(accessToken, refreshToken, profile, done) {
+/* 		User.findOrCreate(..., function(err, user) {
+		  if (err) { return done(err); }
+		  done(null, user);
+		}); */
+	}
+));
+
 
 function getFile(filePath,res,page404){
     fs.exists(filePath,function(exists){

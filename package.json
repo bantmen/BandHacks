@@ -24,6 +24,8 @@
     "fs": "0.0.1",
     "http": "0.0.0",
     "logfmt": "^1.1.2",
+    "passport": "^0.2.0",
+    "passport-facebook": "^1.0.3",
     "path": "^0.4.9"
   },
   "engines": {
