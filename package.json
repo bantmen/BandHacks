@@ -21,9 +21,12 @@
   },
   "dependencies": {
     "express": "^4.4.1",
-    "logfmt": "^1.1.2"
+    "fs": "0.0.1",
+    "http": "0.0.0",
+    "logfmt": "^1.1.2",
+    "path": "^0.4.9"
   },
   "engines": {
-		"node": "0.10.x"
+    "node": "0.10.x"
   }
 }
