@@ -37,7 +37,7 @@ function getFile(filePath,res,page404){
 function requestHandler(req, res) {   //request, respond
     var
         fileName = path.basename(req.url) || 'index.html',
-        page404 = localFolder + '404.html';
+        page404 = '404.html';
 
     getFile((fileName),res,page404);
 	
