@@ -37,28 +37,9 @@ function getFile(filePath,res,page404){
 function requestHandler(req, res) {   //request, respond
     var
         fileName = path.basename(req.url) || 'index.html',
-        //localFolder = __dirname + '\\',
-		localFolder = "",
         page404 = localFolder + '404.html';
 
-    getFile((localFolder + fileName),res,page404);
-	
-/* 	if (path.basename(req.url) == "index.html" || path.basename(req.url) == "" ) {
-		res.write("hi");
-		res.end();
-	} else {
-		res.write("404");
-		res.end();
-	} */
-	
-/* 	fs.exists(localFolder + fileName, function(exists) {
-		res.write(localFolder + fileName);
-		if (exists) {
-			res.end("\n hi");
-		} else {
-			res.end("\n 404");
-		}
-	}); */
+    getFile((fileName),res,page404);
 	
 };
 
