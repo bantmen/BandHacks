@@ -2,14 +2,62 @@
 <html lang="en" ng-app="myApp">
 <head>
   <meta charset="utf-8">
-  <title>My AngularJS App</title>
+  <title>BandHacks | Band Management Tool</title>
   <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/style.css"
+
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
+
+<div class="container">
+    <div class="navbar navbar-default">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/index.html">BandHacks</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">What We Do</a></li>
+      <li><a href="#">App Features</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tasks <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">View Tasks</a></li>
+          <li><a href="#">Add Task</a></li>
+          <li><a href="#">Task History</a></li>
+          <li class="dropdown-header">Dropdown header</li>
+          <li><a href="#">Get Ideas!</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <li><a href="#">Login</a></li>
+    <li><a href="#">Login</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign Up <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Sign Up</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">The Most FAQ</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Log out</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <h1>Band management made easier.</h1>
+  <p>Ever feel like you're in over your head? We can help.</p>
+  <p><a class="btn btn-primary btn-lg" href="www.facebook.com">Sign Up</a></p>
+</div>
+
+</div>
 
   <div ng-view></div>
 
