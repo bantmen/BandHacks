@@ -37,7 +37,8 @@ function getFile(filePath,res,page404){
 function requestHandler(req, res) {   //request, respond
     var
         fileName = path.basename(req.url) || 'index.html',
-        localFolder = __dirname + '\\',
+        //localFolder = __dirname + '\\',
+		localFolder = "",
         page404 = localFolder + '404.html';
 
     //getFile((localFolder + fileName),res,page404);
@@ -55,7 +56,7 @@ function requestHandler(req, res) {   //request, respond
 		if (exists) {
 			res.end("\n hi");
 		} else {
-			res.end("404");
+			res.end("\n 404");
 		}
 	});
 	
