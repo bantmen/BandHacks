@@ -42,13 +42,21 @@ function requestHandler(req, res) {   //request, respond
 
     //getFile((localFolder + fileName),res,page404);
 	
-	if (path.basename(req.url) == "index.html" || path.basename(req.url) == "" ) {
+/* 	if (path.basename(req.url) == "index.html" || path.basename(req.url) == "" ) {
 		res.write("hi");
 		res.end();
 	} else {
 		res.write("404");
 		res.end();
-	}
+	} */
+	
+	fs.exists(localFolder + fileName, function(exists) {
+		if (exists) {
+			res.end("hi");
+		} else {
+			res.end("404");
+		}
+	});
 	
 };
 
