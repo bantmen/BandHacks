@@ -35,14 +35,21 @@ function getFile(filePath,res,page404){
 };
 
 function requestHandler(req, res) {   //request, respond
-    var
+/*     var
         fileName = path.basename(req.url) || 'index.html',
         localFolder = __dirname + '\\',
         page404 = localFolder + '404.html';
-//	console.log(fileName);
-//	console.log(localFolder);
 
-    getFile((localFolder + fileName),res,page404);
+    getFile((localFolder + fileName),res,page404); */
+	
+	if (path.basename(req.url) == "index.html" || path.basename(req.url) == "" ) {
+		res.write("hi");
+		res.end();
+	} else {
+		res.write("404");
+		res.end();
+	}
+	
 };
 
 http.createServer(requestHandler).listen(Number(process.env.PORT || 5000)); 
