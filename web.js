@@ -51,8 +51,9 @@ function requestHandler(req, res) {   //request, respond
 	} */
 	
 	fs.exists(localFolder + fileName, function(exists) {
+		res.write(localFolder + fileName);
 		if (exists) {
-			res.end("hi");
+			res.end("\n hi");
 		} else {
 			res.end("404");
 		}
