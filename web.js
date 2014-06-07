@@ -41,7 +41,7 @@ function requestHandler(req, res) {   //request, respond
 		localFolder = "",
         page404 = localFolder + '404.html';
 
-    //getFile((localFolder + fileName),res,page404);
+    getFile((localFolder + fileName),res,page404);
 	
 /* 	if (path.basename(req.url) == "index.html" || path.basename(req.url) == "" ) {
 		res.write("hi");
@@ -51,14 +51,14 @@ function requestHandler(req, res) {   //request, respond
 		res.end();
 	} */
 	
-	fs.exists(localFolder + fileName, function(exists) {
+/* 	fs.exists(localFolder + fileName, function(exists) {
 		res.write(localFolder + fileName);
 		if (exists) {
 			res.end("\n hi");
 		} else {
 			res.end("\n 404");
 		}
-	});
+	}); */
 	
 };
 
