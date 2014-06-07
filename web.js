@@ -35,12 +35,12 @@ function getFile(filePath,res,page404){
 };
 
 function requestHandler(req, res) {   //request, respond
-/*     var
+    var
         fileName = path.basename(req.url) || 'index.html',
         localFolder = __dirname + '\\',
         page404 = localFolder + '404.html';
 
-    getFile((localFolder + fileName),res,page404); */
+    //getFile((localFolder + fileName),res,page404);
 	
 	if (path.basename(req.url) == "index.html" || path.basename(req.url) == "" ) {
 		res.write("hi");
