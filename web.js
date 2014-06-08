@@ -29,8 +29,8 @@ function getFile(filePath,res,page404){
                     console.log(page404);
                     res.writeHead(404, {'Content-Type': 'text/html'});
                     res.write(contents);
-					setTimeout (function () {}, 5000);
-					res.redirect('/');
+//					setTimeout (function () {}, 5000);
+//					res.redirect('/');
                     res.end();
                 } else {
                     console.dir(err);
