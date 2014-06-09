@@ -24,12 +24,15 @@ passport.use(new FacebookStrategy({
 app.get("/", function(req, res) {
 	var DATABASE_URL = "postgres://lqhwwuagklpoin:AQ_wXUpcw3s6eJXQDdW__CWOj8@ec2-54-197-237-120.compute-1.amazonaws.com:5432/d51f19hl0iptdt";
 	pg.connect(process.env.DATABASE_URL, function(err, client) {
-  var query = client.query('CREATE TABLE User (name email username provider facebook)');
-
-  query.on('row', function(row) {
-    console.log(JSON.stringify(row));
-  });
-});
+		if (err) {res.end("ERR");}
+		else {
+			var query = client.query('CREATE TABLE User (name email username provider facebook)');
+			query.on('row', function(row) {
+				console.log(JSON.stringify(row));
+		  });
+		}
+	});
+		
 })
 
 
