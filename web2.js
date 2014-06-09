@@ -22,7 +22,7 @@ passport.use(new FacebookStrategy({
 ));
 
 app.get("/", function(req, res) {
-	var connectionString = "postgres://lqhwwuagklpoin:AQ_wXUpcw3s6eJXQDdW__CWOj8@ec2-54-197-237-120.compute-1.amazonaws.com:5432:/d51f19hl0iptdt";
+	var connectionString = "postgres://lqhwwuagklpoin:AQ_wXUpcw3s6eJXQDdW__CWOj8@ec2-54-197-237-120.compute-1.amazonaws.com:5432/d51f19hl0iptdt";
 	//var DATABASE_URL = "postgres://lqhwwuagklpoin:AQ_wXUpcw3s6eJXQDdW__CWOj8@ec2-54-197-237-120.compute-1.amazonaws.com:5432/d51f19hl0iptdt";
 	pg.connect(connectionString, function(err, client) {
 		if (err) {
