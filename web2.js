@@ -37,7 +37,7 @@ app.get("/", function(req, res) {
                 if (err) {res.end("ERR-2");}
                 else {
                     res.write("here");
-                    res.write(result.rows.length);
+                    //res.write(result.rows.length);
                     for (var i = 0; i < result.rows.length; i++) {
                         var row = result.rows[i];
                         res.write("here");
