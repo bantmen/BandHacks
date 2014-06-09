@@ -36,18 +36,16 @@ app.get("/", function(req, res) {
             client.query('SELECT * FROM User', function (err, result) {
                 if (err) {res.end("ERR-2");}
                 else {
-                    res.send("here");
                     //res.write(result.rows.length);
                     for (var i = 0; i < result.rows.length; i++) {
                         var row = result.rows[i];
-                        res.send("here");
-                        res.send(row.name);
+                        res.write(row.name);
                         res.send(row.email);
                         res.send(row.username);
                     }
                 }
             });
-			res.end("NO ERR");
+			res.write("NO ERR");
 		}
 	});
 });
