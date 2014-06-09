@@ -7,6 +7,7 @@ var express = require("express"),
     FacebookStrategy = require('passport-facebook').Strategy,
 	pg = require('pg');
 	
+app.use(logfmt.requestLogger());
 
 passport.use(new FacebookStrategy({
 	clientID: "654765054608952",
@@ -30,7 +31,7 @@ app.get("/", function(req, res) {
 			console.log(err);
 		}
 		else {
-			var query = client.query('CREATE TABLE User (name varchar(40) NOT NULL, email varchar(40) NOT NULL, username varchar(40) PRIMARY KEY, provider varchar(40) NOT NULL, facebook varchar(40) NOT NULL)');
+			var query = client.query('CREATE TABLE User (name VARCHAR(40) NOT NULL, email VARCHAR(40) NOT NULL, username VARCHAR(40) PRIMARY KEY, provider VARCHAR(40) NOT NULL, facebook VARCHAR(40) NOT NULL)');
 			query.on('row', function(row) {
 				console.log(JSON.stringify(row));
 		  });
@@ -39,8 +40,6 @@ app.get("/", function(req, res) {
 		
 })
 
-
-app.use(logfmt.requestLogger());
 
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
