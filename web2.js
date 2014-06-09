@@ -32,7 +32,7 @@ app.get("/", function(req, res) {
 		}
 		else {
 			//var query = client.query('CREATE TABLE User (name VARCHAR(40), email VARCHAR(40), username VARCHAR(40) PRIMARY KEY, provider VARCHAR(40), facebook VARCHAR(40))');
-			client.query('INSERT INTO TABLE (username, email) VALUES ("berkay", "berkay@example.com")');
+			client.query('INSERT INTO TABLE (name, email, username, provider, facebook) VALUES ("a", "b", "c", "d", "e")');
             client.query('SELECT * FROM User', function (err, results) {
                 res.write("Row count: %d",result.rows.length); // 1
                 for (var i = 0; i < result.rows.length; i++) {
