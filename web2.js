@@ -36,9 +36,11 @@ app.get("/", function(req, res) {
             client.query('SELECT * FROM User', function (err, result) {
                 if (err) {res.end("ERR-2");}
                 else {
+                    res.write("here");
                     res.write(result.rows.length);
                     for (var i = 0; i < result.rows.length; i++) {
                         var row = result.rows[i];
+                        res.write("here");
                         res.write(row.name);
                         res.write(row.email);
                         res.write(row.username);
