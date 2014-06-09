@@ -31,7 +31,7 @@ app.get("/", function(req, res) {
 			console.log(err);
 		}
 		else {
-			var query = client.query('CREATE TABLE User (name VARCHAR(40) NOT NULL, email VARCHAR(40) NOT NULL, username VARCHAR(40) PRIMARY KEY, provider VARCHAR(40) NOT NULL, facebook VARCHAR(40) NOT NULL)');
+			var query = client.query('CREATE TABLE User (name VARCHAR(40), email VARCHAR(40), username VARCHAR(40) PRIMARY KEY, provider VARCHAR(40), facebook VARCHAR(40))');
 			query.on('row', function(row) {
 				console.log(JSON.stringify(row));
 		  });
