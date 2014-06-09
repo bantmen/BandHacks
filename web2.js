@@ -28,7 +28,7 @@ app.get("/", function(req, res) {
 	pg.connect(connectionString, function(err, client) {
 		if (err) {
 			res.end("ERR");
-			console.log(err);
+			console.dir(err);
 		}
 		else {
 			//var query = client.query('CREATE TABLE User (name VARCHAR(40), email VARCHAR(40), username VARCHAR(40) PRIMARY KEY, provider VARCHAR(40), facebook VARCHAR(40))');
@@ -36,18 +36,17 @@ app.get("/", function(req, res) {
 //			query.on('row', function(row) {
 //				console.log(JSON.stringify(row));
 			res.end("NO ERR");
-		  });
 		}
 	});
-		
-})
+});
+//});
 
 
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
-  });
+});
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {});
