@@ -27,7 +27,7 @@
     "passport": "^0.2.0",
     "passport-facebook": "^1.0.3",
     "path": "^0.4.9",
-	"pg": "2.x"
+    "pg": "^2.11.1"
   },
   "engines": {
     "node": "0.10.x"
