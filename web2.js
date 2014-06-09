@@ -30,7 +30,7 @@ app.get("/", function(req, res) {
 			console.log(err);
 		}
 		else {
-			var query = client.query('CREATE TABLE User (name varchar(40) NOT NULL, email varchar(40) NOT NULL, username varchar(40) NOT NULL, provider varchar(40) NOT NULL, facebook varchar(40) NOT NULL)');
+			var query = client.query('CREATE TABLE User2 (name varchar(40) NOT NULL, email varchar(40) NOT NULL, username varchar(40) NOT NULL, provider varchar(40) NOT NULL, facebook varchar(40) NOT NULL)');
 			query.on('row', function(row) {
 				console.log(JSON.stringify(row));
 		  });
