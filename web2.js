@@ -3,7 +3,7 @@ var express = require("express"),
 	logfmt = require("logfmt"),	
 	path = require('path'),
     fs = require('fs'),
-//    pg = require('pg');
+    pg = require('pg');
 	passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy;
 
