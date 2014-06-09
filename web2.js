@@ -32,7 +32,15 @@ app.get("/", function(req, res) {
 		}
 		else {
 			//var query = client.query('CREATE TABLE User (name VARCHAR(40), email VARCHAR(40), username VARCHAR(40) PRIMARY KEY, provider VARCHAR(40), facebook VARCHAR(40))');
-			var query = client.query('SELECT * FROM User');
+			client.query('SELECT * FROM User', function (err, results) {
+                res.write("Row count: %d",result.rows.length); // 1
+                for (var i = 0; i < result.rows.length; i++) {
+                    var row = result.rows[i];
+                    res.write(row.name);
+                    res.write(row.email);
+                    res.write(row.username);
+                }
+            });
 //			query.on('row', function(row) {
 //				console.log(JSON.stringify(row));
 			res.end("NO ERR");
