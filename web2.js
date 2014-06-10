@@ -16,12 +16,16 @@ passport.use(new FacebookStrategy({
 	callbackURL: "http://localhost:5000/auth/facebook/callback"
 	},
 	function(accessToken, refreshToken, profile, done) {
-//		client.query('SELECT id FROM "Users"', function (err, result) {
-//			for (var i = 0; i < result.rows.length; i++) {
-				//var row = result.rows[i];
-				//console.log(row.name);
-//			}
-//		});
+		client.query('SELECT id FROM "Users" WHERE id=$1', [profile.id], function (err, result) {
+			if (err) return res.end(err);
+			if (result.rows[0]) return done(err, result.rows[0]);  // exists
+			else {                                                 // does not exist
+				client.query('INSERT INTO "User" (name, email, username, provider, id)  \
+				VALUES ($1, $2, $3, $4, $5), [profile.displayName, profile.emails[0].value, profile.username, "facebook", profile._json.id]', function (err, result) {
+					if (err) res.end(err);
+				});
+			}					
+		});
 	}
 ));
 
@@ -34,23 +38,12 @@ app.get("/", function(req, res) {
 			console.dir(err);
 		}
 		else {
-//			client.query('INSERT INTO "Users" (name) VALUES($1)',
-//            ["calm_reviewer"]);
-			//client.query('CREATE TABLE Users (name VARCHAR(40) NOT NULL, email VARCHAR(40) NOT NULL, username VARCHAR(40) NOT NULL, provider VARCHAR(40) NOT NULL, facebook VARCHAR(40)) NOT NULL');
-			//client.query('INSERT INTO "Users" (name, email, username, provider, facebook) VALUES (a, b, c, d, e)');
 /* 			client.query('SELECT name FROM "Users"', function (err, result) {
  				for (var i = 0; i < result.rows.length; i++) {
 					var row = result.rows[i];
 					console.log(row.name);
 				}
             }); */
-			client.query('SELECT name FROM "Users" WHERE name=$1', ["1calm_reviewer"], function (err, result) {
-				if (err) console.log (err);
-				else {
-					if (result.rows[0]) console.log(result.rows[0]); 
-					else console.log("nope");
-				}
-			});
 			res.write("NO ERR");
 			res.end();
 		}
