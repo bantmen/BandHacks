@@ -16,36 +16,38 @@ passport.use(new FacebookStrategy({
 	callbackURL: "http://localhost:5000/auth/facebook/callback"
 	},
 	function(accessToken, refreshToken, profile, done) {
-/* 		User.findOrCreate(..., function(err, user) {
-		  if (err) { return done(err); }
-		  done(null, user);
-		}); */
+//		client.query('SELECT id FROM "Users"', function (err, result) {
+//			for (var i = 0; i < result.rows.length; i++) {
+				//var row = result.rows[i];
+				//console.log(row.name);
+//			}
+//		});
 	}
 ));
 
 app.get("/", function(req, res) {
-	var connectionString = "postgres://lqhwwuagklpoin:AQ_wXUpcw3s6eJXQDdW__CWOj8@ec2-54-197-237-120.compute-1.amazonaws.com:5432/d51f19hl0iptdt";
+	var connectionString = "postgres://postgres:root@localhost/postgres";
+	//var connectionString = "postgres://lqhwwuagklpoin:AQ_wXUpcw3s6eJXQDdW__CWOj8@ec2-54-197-237-120.compute-1.amazonaws.com:5432/d51f19hl0iptdt";
 	pg.connect(connectionString, function(err, client) {
 		if (err) {
 			res.end("ERR");
 			console.dir(err);
 		}
 		else {
-			//var query = client.query('CREATE TABLE User (name VARCHAR(40), email VARCHAR(40), username VARCHAR(40) PRIMARY KEY, provider VARCHAR(40), facebook VARCHAR(40))');
-			//client.query('INSERT INTO User (name, email, username, provider, facebook) VALUES ("a", "b", "c", "d", "e")');
-            client.query('SELECT * FROM User', function (err, result) {
-                if (err) {res.end("ERR-2");}
-                else {
-                    //res.write(result.rows.length);
-                    for (var i = 0; i < result.rows.length; i++) {
-                        var row = result.rows[i];
-                        res.write(row.name);
-                        res.send(row.email);
-                        res.send(row.username);
-                    }
-                }
-            });
+//			client.query('INSERT INTO "Users" (name) VALUES($1)',
+//            ["calm_reviewer"]);
+			//client.query('CREATE TABLE Users (name VARCHAR(40) NOT NULL, email VARCHAR(40) NOT NULL, username VARCHAR(40) NOT NULL, provider VARCHAR(40) NOT NULL, facebook VARCHAR(40)) NOT NULL');
+			//client.query('INSERT INTO "Users" (name, email, username, provider, facebook) VALUES (a, b, c, d, e)');
+/* 			client.query('SELECT name FROM "Users"', function (err, result) {
+ 				for (var i = 0; i < result.rows.length; i++) {
+					var row = result.rows[i];
+					console.log(row.name);
+				}
+            }); */
+			var query = client.query('SELECT * FROM "Users" WHERE name=$1', ["calm_reviewer"]);
+			console.log(query.values);
 			res.write("NO ERR");
+			res.end();
 		}
 	});
 });
