@@ -44,8 +44,13 @@ app.get("/", function(req, res) {
 					console.log(row.name);
 				}
             }); */
-			var query = client.query('SELECT * FROM "Users" WHERE name=$1', ["calm_reviewer"]);
-			console.log(query.values);
+			client.query('SELECT name FROM "Users" WHERE name=$1', ["1calm_reviewer"], function (err, result) {
+				if (err) console.log (err);
+				else {
+					if (result.rows[0]) console.log(result.rows[0]); 
+					else console.log("nope");
+				}
+			});
 			res.write("NO ERR");
 			res.end();
 		}
