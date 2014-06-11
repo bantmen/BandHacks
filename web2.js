@@ -7,8 +7,10 @@ var express = require("express"),
 	passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy;
 
-	
+
 app.use(logfmt.requestLogger());
+
+app.use(express.static(__dirname));
 
 passport.use(new FacebookStrategy({
 	clientID: "654765054608952",
@@ -39,7 +41,7 @@ passport.use(new FacebookStrategy({
 ));
 
 app.get("/", function(req, res) {
-	var connectionString = "postgres://postgres:root@localhost/postgres";
+/* 	var connectionString = "postgres://postgres:root@localhost/postgres";
 	//var connectionString = "postgres://lqhwwuagklpoin:AQ_wXUpcw3s6eJXQDdW__CWOj8@ec2-54-197-237-120.compute-1.amazonaws.com:5432/d51f19hl0iptdt";
 	pg.connect(connectionString, function(err, client) {
 		if (err) {
@@ -47,16 +49,17 @@ app.get("/", function(req, res) {
 			console.dir(err);
 		}
 		else {
-/* 			client.query('SELECT name FROM "Users"', function (err, result) {
+			client.query('SELECT name FROM "Users"', function (err, result) {
  				for (var i = 0; i < result.rows.length; i++) {
 					var row = result.rows[i];
 					console.log(row.name);
 				}
-            }); */
+            });
 			res.write("NO ERR");
 			res.end();
 		}
-	});
+	}); */
+	res.end();
 });
 
 
