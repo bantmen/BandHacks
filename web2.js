@@ -19,7 +19,7 @@ passport.use(new FacebookStrategy({
 	callbackURL: "http://bandhacks.herokuapp.com/auth/facebook/callback"
 	},
 	function(accessToken, refreshToken, profile, done) {
-		client.query('SELECT id FROM "Users" WHERE id=$1', [profile.id], function (err, result) {
+/* 		client.query('SELECT id FROM "Users" WHERE id=$1', [profile.id], function (err, result) {
 			if (err) {
 				return done(err);
 			}
@@ -32,7 +32,8 @@ passport.use(new FacebookStrategy({
 					if (err) done(err);
 				});
 			}	
-		}); 
+		});  */
+		return done();
 	}
 ));
 
