@@ -62,9 +62,11 @@ app.get("/", function(req, res) {
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook', { successRedirect: '/',
-                                      failureRedirect: '/login' }));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+									  
+app.get('/login', function(req, res){
+		
+	});
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {console.log("Listening on port: " + port)});
