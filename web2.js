@@ -19,25 +19,20 @@ passport.use(new FacebookStrategy({
 	callbackURL: "http://bandhacks.herokuapp.com/auth/facebook/callback"
 	},
 	function(accessToken, refreshToken, profile, done) {
-/* 		console.log(000000000000000000000000);
 		client.query('SELECT id FROM "Users" WHERE id=$1', [profile.id], function (err, result) {
 			if (err) {
-				console.log(111111111111111);
-				res.end(err);
+				return done(err);
 			}
 			if (result.rows[0]) {
-				console.log(222222222222222);
 				return done(err, result.rows[0]);  
 			 }
 			else {     
-				console.log(333333333333333);
 				client.query('INSERT INTO "User" (name, email, username, provider, id)  \
 				VALUES ($1, $2, $3, $4, $5), [profile.displayName, profile.emails[0].value, profile.username, "facebook", profile._json.id]', function (err, result) {
-					if (err) res.end(err);
+					if (err) done(err);
 				});
 			}	
-			res.end();
-		}); */
+		}); 
 	}
 ));
 
