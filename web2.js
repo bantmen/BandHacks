@@ -5,7 +5,8 @@ var express = require("express"),
     fs = require('fs'),
     pg = require('pg');
 	passport = require('passport'),
-    FacebookStrategy = require('passport-facebook').Strategy;
+    FacebookStrategy = require('passport-facebook').Strategy,
+	user = "";
 
 
 app.use(logfmt.requestLogger());
@@ -40,13 +41,13 @@ passport.use(new FacebookStrategy({
 				return done(err);
 			}
 			if (result.rows[0]) {
-				var user = {username : result.rows[0]};
-				return done(null, result.rows[0]);   
+				user = {username : profile.displayName};
+				return done(null, user);   
 			 }
 			else {     
 				var sqlParams = [profile.displayName || "no displayname", profile.emails ? profile.emails[0].value : "no email", profile.username || "no username", "facebook", profile._json.id || "problem with _json.id"];
 				var query = client.query('INSERT INTO "Users" (name, email, username, provider, id) VALUES ($1, $2, $3, $4, $5)', sqlParams, function (err, result) {
-					var user = {username : profile.displayName};
+					user = {username : profile.displayName};
 					if (err) {
 						return done(err);
 					}
@@ -85,11 +86,12 @@ app.get("/", function(req, res) {
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/login', failureRedirect: '/failed.html' }));
 									  
 app.get('/login', function(req, res){
-        res.end("HELLO WORLD");
+		res.write("Hello " + user.username);
+        res.end("\nYou are logged in");
 	});
-
+	
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {console.log("Listening on port: " + port)});
