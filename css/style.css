@@ -44,6 +44,23 @@ body, h1, h2, h3, h4, h5, h6 {
 	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
 
+.btn-cta {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+.btn-cta:hover,
+.btn-cta:focus,
+.btn-cta:active,
+.btn-cta.active,
+.open .dropdown-toggle.btn-cta {
+    color: #fff;
+    background-color: #ed9c28;
+    border-color: #d58512;
+}
+
+}
+
 @media (max-width: 767px) {
 	.intro-message {
 		padding-bottom: 15%;
