@@ -19,6 +19,10 @@ app.controller('TestController', function(){
 
 app.controller('TestController2', function($scope){
 	$scope.test = "hello";
+	$scope.createTodo = function (task) {
+		console.log("hello createTodo");
+		$scope.taskList += task + '<br>';
+	};
 });
 
 app.controller("HelloWorldCtrl", function ($scope){
