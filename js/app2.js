@@ -3,7 +3,7 @@ var app = angular.module('myapp', []);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/tasks', {
-		templateUrl: "angulartest6.html", 
+		templateUrl: "tasks.html", 
 		controller: 'TestController2'
 	});
 	$routeProvider.when('/hello', {
