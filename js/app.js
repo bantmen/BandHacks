@@ -1,35 +1,22 @@
-'use strict';
+//console.log('logged');
+var app = angular.module('bandHacks', []);
 
+app.config(function($routeProvider) {
+	$routeProvider.when('/a', {
+		templateUrl: "angulartest5.html", 
+		controller: 'TestController2'
+	});
+	$routeProvider.when('/hi', {
+		templateUrl: "angulartest6.html", 
+		controller: 'TestController'
+	});
+//	.otherwise({redirectTo: '/'});
+});
 
-// Declare app level module which depends on filters, and services
-var app = angular.module('bandHacks', [
-  'ngRoute',
-  'bandHacks.filters',
-  'bandHacks.services',
-  'bandHacks.directives',
-  'bandHacks.controllers'
-]).
+app.controller('TestController', function(){
 
-    /* removed routes for testing purposes
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/dashboard', {
-      templateUrl: '/dashboard.html',
-      controller: 'DashController'});
-  $routeProvider.when('/tasks', {
-      templateUrl: '/tasks.html',
-      controller: 'TasksController'});
-  $routeProvider.otherwise({redirectTo: '/dashboard.html'});
-}]
-*/
+});
 
-    //dash controller
-app.controller('DashController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
-})
-
-    //tasks controller
-app.controller('TasksController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
-
-})
-);
+app.controller('TestController2', function($scope){
+	$scope.test = "hello";
+});

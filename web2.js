@@ -61,8 +61,9 @@ passport.use(new FacebookStrategy({
 	}
 )}));
 
+/* 
 app.get("/", function(req, res) {
-/* 	var connectionString = "postgres://postgres:root@localhost/postgres";
+ 	var connectionString = "postgres://postgres:root@localhost/postgres";
 //	var connectionString = "postgres://qsxtzbqlsljdiy:HVNOigVMRb_JxhP4II7uut1JV9@ec2-54-197-237-231.compute-1.amazonaws.com:5432/dbig67cfjnt8na";
 	pg.connect(connectionString, function(err, client) {
 		if (err) {
@@ -79,13 +80,16 @@ app.get("/", function(req, res) {
 			res.write("NO ERR");
 			res.end();
 		}
-	}); */
+	}); 
 	res.end();
+}); */
+
+app.get('*', function(req, res) {
+	res.sendfile('dashboard.html');  //single page app starts on dashboard.html
 });
 
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
-
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/login', failureRedirect: '/failed.html' }));
 									  
 app.get('/login', function(req, res){
