@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -126,7 +126,9 @@
                 <div class="bs-example">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            {{task.name}}<span class="badge">{{status}}</span><span class="badge">Edit</span><span class="badge">Del</span>
+							<div ng-controller="myController">
+								{{taskName}}<span class="badge">{{status}}</span><span class="badge">Edit</span><span class="badge">Del</span>
+							</div>
                         </li>
                     </ul>
                 </div>
@@ -141,6 +143,19 @@
 </div><!-- /#wrapper -->
 
 <!-- JavaScript -->
+<script type="text/javascript"> 
+var button = document.getElementsByClassName("btn-default")
+var count = 0;
+
+//button.addEventListener('click', myController());
+button.onclick = function () {
+	count += 1;
+//	$scope.taskName = count;
+//	$scope.apply();
+	console.log("here");
+}
+</script>
+
 <script data-require="angular.js@*" data-semver="1.3.0-beta.5" src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
 <script src="js/jquery-1.10.2.js"></script>
 <script src="js/bootstrap.js"></script>
