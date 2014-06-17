@@ -1,4 +1,3 @@
-console.log("hello app2.js");
 var app = angular.module('myapp', []);
 
 app.config(function($routeProvider) {
@@ -19,11 +18,21 @@ app.controller('TestController', function(){
 
 app.controller('TestController2', function($scope){
 	$scope.test = "hello";
-	$scope.taskList = "";
+	var taskList = [];
 	$scope.createTask = function (task) {
-		console.log("hello createTask");
-		$scope.taskList += task;
+		taskList.push(task);
+		$scope.taskDisplay = "";
+		var temp = "";
+		for (var i=0;i<taskList.length;i++) {
+			temp += (i+1).toString() + "- " + taskList[i] + '<br>';
+			console.log(temp);
+		}	
+		$scope.taskDisplay = temp;
 	};
+/* 	inputCheck = function(inputString) {
+		if () {}
+		else return true;
+	}; */
 });
 
 app.controller("HelloWorldCtrl", function ($scope){

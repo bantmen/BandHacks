@@ -6,4 +6,6 @@ The following should say hello: {{test}}
 <br>
 <h4> Task List </h4>
 <br>
-{{taskList}}
+<p ng-bind-html-unsafe="taskDisplay"> 
+{{taskDisplay}}
+</p>
