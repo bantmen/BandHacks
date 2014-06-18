@@ -1,11 +1,25 @@
-<input type="text" class="form-control input-lg text-center" placeholder="Enter your new task" ng-model="tempTask">
+<div ng-controller="TasksController as tCtrl">
+
+<!-- <input type="text" class="form-control input-lg text-center" placeholder="Enter your new task" ng-model="tempTask">
 <button type="submit" class="btn btn-primary btn-lg" ng-click="createTask(tempTask)">Add</button>
 <br>
 <h3> Currently adding: </h3>{{tempTask}}
 <br>
 <h4> Task List </h4>
 <br>
-<p ng-bind-html-unsafe="taskDisplay"> 
+<p ng-bind-html="taskDisplay | unsafe"> 
 {{taskDisplay}}
-</p>
+</p> -->
 
+<input type="text" class="form-control input-lg text-center" placeholder="Enter your new task" ng-model="tempTask">
+<button type="submit" class="btn btn-primary btn-lg" ng-click="tCtrl.createTask(tempTask)">Add</button>
+<br>
+<h4> Currently adding: </h4>{{tempTask}}
+<br>
+<h3> Task List </h3>
+<br>
+<li ng-repeat="task in tCtrl.tasks">
+<div ng-model="task.task">{{task.task}}<a href="" ng-click="tCtrl.deleteTask(task)">  X</a></div>
+</li>
+
+</div>

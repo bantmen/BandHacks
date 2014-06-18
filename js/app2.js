@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute'])
+var app = angular.module('myApp', ['ngRoute'])
 
 .config(function($routeProvider) {
 	$routeProvider.when('/tasks', {
@@ -12,13 +12,10 @@ angular.module('myApp', ['ngRoute'])
 //	.otherwise({redirectTo: '/dashboard.html'});
 })
 
-.controller('TasksController', function($scope){
-	console.log('first');
-	$scope.test = "hello";
+/* .controller('TasksController', function($scope, $sce){
 	var taskList = [];
 	$scope.createTask = function (task) {
 		if (inputCheck(task)) {
-			console.log('I came');
 			taskList.push(task);
 			$scope.taskDisplay = "";
 			var temp = "";
@@ -26,6 +23,7 @@ angular.module('myApp', ['ngRoute'])
 				temp += (i+1).toString() + "- " + taskList[i] + '<br>';
 				console.log(temp);
 			}	
+			// $sce.trustAsHtml($scope.taskDisplay);
 			$scope.taskDisplay = temp;
 		}
 		else $scope.tempTask = "Please do not use angular brackets.";
@@ -37,19 +35,20 @@ angular.module('myApp', ['ngRoute'])
 		}
 		else return true;
 	};
-	function occurrences(string, subString, allowOverlapping){  //from stackoverflow
-		string+=""; subString+="";
-		if(subString.length<=0) return string.length+1;
+}) */
 
-		var n=0, pos=0;
-		var step=(allowOverlapping)?(1):(subString.length);
-
-		while(true){
-			pos=string.indexOf(subString,pos);
-			if(pos>=0){ n++; pos+=step; } else break;
-		}
-		return(n);
-	}
+.controller('TasksController', function($scope){
+	var self = this;
+	self.tasks = [{}];  //tasks.num and tasks.task
+	self.createTask = function (data) {
+		self.tasks.push({task: data});
+		console.log(self.tasks);
+	};
+	self.deleteTask = function (data) {
+		var index = self.tasks.indexOf(data);
+		self.tasks.splice(index, 1);
+	};
+	self.deleteTask();  //to get rid of the first, idle X mark
 })
 
 .controller("UserController", function($scope, $http){  //username, userpicture etc.
@@ -61,10 +60,11 @@ angular.module('myApp', ['ngRoute'])
 		.error(function(data){
 			console.log('Error: ' + data);
 		});
-	// if () {}
+	if (!$scope.userName) {$scope.userName = 'TESTNAME';}
 })
 
 .controller("HelloWorldController", function ($scope){
    $scope.helloMessage="Hello World";
 });
+
 
