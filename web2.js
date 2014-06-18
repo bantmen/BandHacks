@@ -90,7 +90,7 @@ app.get('*', function(req, res) {
 
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/login', failureRedirect: '/failed.html' }));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/dashboard.html', failureRedirect: '/failed.html' }));
 									  
 app.get('/login', function(req, res){
 		res.write("Hello " + user.username);
