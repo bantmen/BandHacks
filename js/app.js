@@ -10,12 +10,14 @@ var app = angular.module('bandHacks', [
   'bandHacks.controllers'
 ]).
 
+    var app = angular.module('app',[]);
+
     /* removed routes for testing purposes
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/dashboard', {
+  $routeProvider.when('#/dashboard', {
       templateUrl: '/dashboard.html',
       controller: 'DashController'});
-  $routeProvider.when('/tasks', {
+  $routeProvider.when('#/tasks', {
       templateUrl: '/tasks.html',
       controller: 'TasksController'});
   $routeProvider.otherwise({redirectTo: '/dashboard.html'});
@@ -28,8 +30,6 @@ app.controller('DashController', ['$scope', function($scope) {
 })
 
     //tasks controller
-app.controller('TasksController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
 
 })
 );
