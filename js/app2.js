@@ -3,7 +3,7 @@ angular.module('myApp', ['ngRoute'])
 .config(function($routeProvider) {
 	$routeProvider.when('/tasks', {
 		templateUrl: "tasks.html", 
-		controller: 'TestController2'
+		controller: 'TasksController'
 	});
 	$routeProvider.when('/hello', {
 		templateUrl: "deneme.html", 
@@ -12,11 +12,7 @@ angular.module('myApp', ['ngRoute'])
 //	.otherwise({redirectTo: '/dashboard.html'});
 })
 
-.controller('TestController', function(){
-
-})
-
-.controller('TestController2', function($scope){
+.controller('TasksController', function($scope){
 	console.log('first');
 	$scope.test = "hello";
 	var taskList = [];
@@ -57,9 +53,18 @@ angular.module('myApp', ['ngRoute'])
 })
 
 .controller("UserController", function($scope, $http){  //username, userpicture etc.
-	$scope.userName = "TESTNAME";
+	$http.get('/api/user')
+		.success(function(data){
+			$scope.userName = data.username;
+			console.log('Success: ' + data);
+		})
+		.error(function(data){
+			console.log('Error: ' + data);
+		});
+	// if () {}
 })
 
 .controller("HelloWorldController", function ($scope){
    $scope.helloMessage="Hello World";
 });
+

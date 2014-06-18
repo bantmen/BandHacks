@@ -87,7 +87,11 @@ app.get("/", function(req, res) {
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/dashboard.html', failureRedirect: '/failed.html' }));
-									  
+								
+app.get('/api/user', function(req, res) {
+		res.json(user);
+	});
+								
 app.get('*', function(req, res) {
 	res.sendfile('dashboard.html');  //single page app starts on dashboard.html
 });
