@@ -1,6 +1,6 @@
-var app = angular.module('myapp', []);
+angular.module('myApp', ['ngRoute'])
 
-app.config(function($routeProvider) {
+.config(function($routeProvider) {
 	$routeProvider.when('/tasks', {
 		templateUrl: "tasks.html", 
 		controller: 'TestController2'
@@ -8,15 +8,15 @@ app.config(function($routeProvider) {
 	$routeProvider.when('/hello', {
 		templateUrl: "deneme.html", 
 		controller: 'HelloWorldCtrl'
-	})
-	.otherwise({redirectTo: '/dashboard.html'});
-});
+	});
+//	.otherwise({redirectTo: '/dashboard.html'});
+})
 
-app.controller('TestController', function(){
+.controller('TestController', function(){
 
-});
+})
 
-app.controller('TestController2', function($scope){
+.controller('TestController2', function($scope){
 	console.log('first');
 	$scope.test = "hello";
 	var taskList = [];
@@ -54,8 +54,8 @@ app.controller('TestController2', function($scope){
 		}
 		return(n);
 	}
-});
+})
 
-app.controller("HelloWorldCtrl", function ($scope){
+.controller("HelloWorldCtrl", function ($scope){
    $scope.helloMessage="Hello World";
 });
