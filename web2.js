@@ -29,12 +29,12 @@ passport.use(new FacebookStrategy({
 	//clientSecret: "6bbd5edcc7d4b9b3ff1da43b8b09239d",
 	clientID : "654765054608952",
 	clientSecret : "32f8a00e838b2c8aa722eafb936b684c",
-	//callbackURL: "http://localhost:5000/auth/facebook/callback"
-	callbackURL : "http://bandhacks.herokuapp.com/auth/facebook/callback"
+	callbackURL: "http://localhost:5000/auth/facebook/callback"
+	//callbackURL : "http://bandhacks.herokuapp.com/auth/facebook/callback"
 	},
 	function(accessToken, refreshToken, profile, done) {
-		//var connectionString = "postgres://postgres:root@localhost/postgres";
-		var connectionString = "postgres://qsxtzbqlsljdiy:HVNOigVMRb_JxhP4II7uut1JV9@ec2-54-197-237-231.compute-1.amazonaws.com:5432/dbig67cfjnt8na";
+		var connectionString = "postgres://postgres:root@localhost/postgres";
+		//var connectionString = "postgres://qsxtzbqlsljdiy:HVNOigVMRb_JxhP4II7uut1JV9@ec2-54-197-237-231.compute-1.amazonaws.com:5432/dbig67cfjnt8na";
 		pg.connect(connectionString, function (err, client) {
 			client.query('SELECT id FROM "Users" WHERE id=$1', [profile.id], function (err, result) {
 			if (err) {

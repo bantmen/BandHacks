@@ -6,9 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blank Page - SB Admin</title>
-	
-    
+    <title>BandHacks - Dashboard</title>
+	   
 	<!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
@@ -21,10 +20,9 @@
     <script src="https://code.angularjs.org/1.3.0-beta.9/angular.min.js"></script>
 	<script src="https://code.angularjs.org/1.3.0-beta.9/angular-route.min.js"></script>
 	<script src="/js/app2.js"></script>
-    <!-- <script src="js/jquery-1.10.2.js"></script> -->
-    <!-- <script src="js/bootstrap.js"></script> -->
-
-
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery-1.10.2.js"></script> 
+	
   </head>
 
   <body>
@@ -76,8 +74,10 @@
                 <li class="dropdown-header">7 New Messages</li>
                 <li class="message-preview">
                   <a href="#">
+				  <div ng-controller="UserController">
                     <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                    <span class="name">John Smith:</span>
+                    <span class="name">{{userName}}:</span>
+					</div>
                     <span class="message">Hey there, I wanted to ask you something...</span>
                     <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
                   </a>
@@ -85,8 +85,10 @@
                 <li class="divider"></li>
                 <li class="message-preview">
                   <a href="#">
+				    <div ng-controller="UserController">
                     <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                    <span class="name">John Smith:</span>
+                    <span class="name">{{userName}}:</span>
+					 <div>
                     <span class="message">Hey there, I wanted to ask you something...</span>
                     <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
                   </a>
@@ -94,8 +96,10 @@
                 <li class="divider"></li>
                 <li class="message-preview">
                   <a href="#">
+				  <div ng-controller="UserController">
                     <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                    <span class="name">John Smith:</span>
+                    <span class="name">{{userName}}:</span>
+				  </div>
                     <span class="message">Hey there, I wanted to ask you something...</span>
                     <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
                   </a>
@@ -118,8 +122,10 @@
               </ul>
             </li>
             <li class="dropdown user-dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-              <ul class="dropdown-menu">
+			<div ng-controller="UserController">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{userName}}<b class="caret"></b></a>
+              </div>
+			  <ul class="dropdown-menu">
                 <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                 <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
                 <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>

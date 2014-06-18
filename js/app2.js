@@ -56,6 +56,10 @@ angular.module('myApp', ['ngRoute'])
 	}
 })
 
-.controller("HelloWorldCtrl", function ($scope){
+.controller("UserController", function($scope, $http){  //username, userpicture etc.
+	$scope.userName = "TESTNAME";
+})
+
+.controller("HelloWorldController", function ($scope){
    $scope.helloMessage="Hello World";
 });
