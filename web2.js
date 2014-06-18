@@ -84,18 +84,13 @@ app.get("/", function(req, res) {
 	res.end();
 }); */
 
-app.get('*', function(req, res) {
-	res.sendfile('dashboard.html');  //single page app starts on dashboard.html
-});
-
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/dashboard.html', failureRedirect: '/failed.html' }));
 									  
-app.get('/login', function(req, res){
-		res.write("Hello " + user.username);
-        res.end("\nYou are logged in");
-	});
+app.get('*', function(req, res) {
+	res.sendfile('dashboard.html');  //single page app starts on dashboard.html
+});
 	
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {console.log("Listening on port: " + port)});
