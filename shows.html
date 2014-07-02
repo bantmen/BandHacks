@@ -3,12 +3,17 @@
         <div class="page-header">
             <h1 id="navs">Shows</h1>
         </div>
+
+        <!-- add show -->
+        <button ng-click='toggleModal()'>Add Show</button>
+        <modal-dialog show='modalShown' width='750px' height='60%'>
+            <p> ADD A SHOW! <p>
+        </modal-dialog>
+
         <!-- shows list -->
         <li ng-repeat="#">
-            <div ng-model="task.task">{{show.show}}<a href="" ng-click="#"></span></a></div>
+            <div ng-model="#.#">{{#.#}}<a href="" ng-click="#"></span></a></div>
         </li>
-
-        <button class="btn btn-success" ng-click="launch('confirm')">Confirm Dialog</button>
 
     </div> <!-- /. ctrl - wrapper -->
 </div> <!-- /. page wrapper  -->

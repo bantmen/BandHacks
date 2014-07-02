@@ -5,6 +5,10 @@ var app = angular.module('myApp', ['ngRoute'])
 		templateUrl: "tasks.html", 
 		controller: 'TasksController'
 	});
+    $routeProvider.when('/shows', {
+        templateUrl: "shows.html",
+        controller: 'ShowsController'
+    });
 	$routeProvider.when('/hello', {
 		templateUrl: "deneme.html", 
 		controller: 'HelloWorldCtrl'
@@ -51,6 +55,20 @@ var app = angular.module('myApp', ['ngRoute'])
 	self.deleteTask();  //to get rid of the first, idle X mark
 })
 
+.controller('ShowsController', function($scope){
+    var self = this;
+    self.shows = [{}];  //tasks.num and tasks.task
+    self.createShow = function (data) {
+        self.shows.push({shows: data});
+        console.log(self.shows);
+    };
+    self.deleteShow = function (data) {
+        var index = self.shows.indexOf(data);
+        self.shows.splice(index, 1);
+    };
+    self.deleteShow();  //to get rid of the first, idle X mark
+})
+
 .controller("UserController", function($scope, $http){  //username, userpicture etc.
 	$http.get('/api/user')
 		.success(function(data){
@@ -79,6 +97,15 @@ var app = angular.module('myApp', ['ngRoute'])
             case 'error':
                 dlg = $dialogs.error('This is my error message');
                 break;
+
+
+            case 'addShow':
+                dlg = $dialogs.create('/addshow.html','whatsYourNameCtrl',{},{key: false,back: 'static'});
+                dlg.result.then(function(name){
+                    $scope.name = name;
+                },function(){
+                    $scope.name = 'You decided not to enter in your name, that makes me sad.';
+                });
 
             // Wait / Progress Dialog
             case 'wait':
@@ -135,6 +162,13 @@ var app = angular.module('myApp', ['ngRoute'])
             }
         },1000);
     }; // end fakeProgress
+
+    .controller('addShowCtrl', function($scope) {
+        $scope.modalShown = false;
+        $scope.toggleModal = function() {
+            $scope.modalShown = !$scope.modalShown;
+    };
+});
 
 }) // end dialogsServiceTest
     .controller('whatsYourNameCtrl',function($scope,$modalInstance,data){
