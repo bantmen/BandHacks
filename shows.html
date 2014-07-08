@@ -5,15 +5,20 @@
         </div>
 
         <!-- add show -->
-        <button ng-click='toggleModal()'>Add Show</button>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p> ADD A SHOW! <p>
-        </modal-dialog>
+        <div ng-controller="MainCtrl" style="background-color: #eee; font-size:18px">
+            <div class="row-fluid" >
+                <div class="span8 pagination-centered hero-unit" style="margin-left:215px; margin-top:50px; background-color: #78d2b6;  ">
+                    <h1>AngularJS Modal Service</h1>
+                    <div class="span10 pagination-centered" style="margin-left:50px; margin-top:20px">
+                        <button ng-click="launchInlineModal()" class="btn btn-large btn-danger">Inline Modal</button>
+                        <button ng-click="launchObjectModal()" class="btn btn-large btn-danger">Object Modal</button>
+                        <button ng-click="launchSimpleModal()" class="btn btn-large btn-danger">Simple Modal</button>
+                        <button ng-click="launchComplexModal()" class="btn btn-large btn-danger">Complex Modal</button>
+                    </div>
+                </div>
+            </div><!-- end .row-fluid -->
+        </div><!-- end ng-controller -->
 
-        <!-- shows list -->
-        <li ng-repeat="#">
-            <div ng-model="#.#">{{#.#}}<a href="" ng-click="#"></span></a></div>
-        </li>
 
     </div> <!-- /. ctrl - wrapper -->
 </div> <!-- /. page wrapper  -->
