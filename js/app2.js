@@ -141,37 +141,15 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
         }; // end switch
     }; // end launch
 
-    // for faking the progress bar in the wait dialog
-    var progress = 25;
-    var msgs = [
-        'Hey! I\'m waiting here...',
-        'About half way done...',
-        'Almost there?',
-        'Woo Hoo! I made it!'
-    ];
-    var i = 0;
-
-    var fakeProgress = function(){
-        $timeout(function(){
-            if(progress < 100){
-                progress += 25;
-                $rootScope.$broadcast('dialogs.wait.progress',{msg: msgs[i++],'progress': progress});
-                fakeProgress();
-            }else{
-                $rootScope.$broadcast('dialogs.wait.complete');
-            }
-        },1000);
-    }; // end fakeProgress
-
 })
-/* start modal testing */
+/* modal pop ups*/
     .controller('MainCtrl', ['$scope', 'createDialog', function($scope, createDialogService) {
         $scope.launchInlineModal = function() {
             createDialogService({
                 id: 'simpleDialog',
                 template:
                     '<div class="row-fluid">' +
-                    ' <h3>This is how the Simple Modal was launched</h3>' +
+                    ' <h3>Venue Name</h3>' +
                     ' <div>' +
                     '   <div class="codebox">' +
                     '<pre>' +
@@ -191,7 +169,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                     '   </div>\n' +
                     ' </div>\n' +
                     '</div>',
-                title: 'A Inline Modal Dialog',
+                title: 'Add A Show',
                 backdrop: true,
                 success: {label: 'Success', fn: function() {console.log('Inline modal closed');}}
             });
@@ -227,11 +205,11 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
             });
         };
         $scope.launchSimpleModal = function() {
-            createDialogService('simpleModal.html', {
+            createDialogService('addShow.html', {
                 id: 'simpleDialog',
-                title: 'A Simple Modal Dialog',
+                title: 'Add A Show',
                 backdrop: true,
-                success: {label: 'Success', fn: function() {console.log('Simple modal closed');}}
+                success: {label: 'Add Show', fn: function() {console.log('Simple modal closed');}}
             });
         };
         $scope.launchComplexModal = function() {

@@ -172,23 +172,33 @@ table.tablesorter thead tr th:hover {
     padding-right: 15px !important;
   }
 
-    /* Pop Up Forms CSS Code */
+/* Modal Pop Ups CSS Code */
+.modal-text{
+    font-color: #3f3f3f;
+    font-size: 12px;
+}
 
-    /* Fix for Bootstrap 3 with Angular UI Bootstrap */
-    .modal {
-        display: block;
-    }
+.modal-wrapper{
+    padding-left: 10px;
+    padding-left: 10px;
+    display: inline;
+}
 
-    /* Custom dialog/modal headers */
-    .dialog-header-error { background-color: #d2322d; }
-    .dialog-header-wait { background-color: #428bca; }
-    .dialog-header-notify { background-color: #eeeeee; }
-    .dialog-header-confirm { background-color: #333333; }
-    .dialog-header-error span, .dialog-header-error h4,
-    .dialog-header-wait span, .dialog-header-wait h4,
-    .dialog-header-confirm span, .dialog-header-confirm h4 { color: #ffffff; }
+/* Fix for Bootstrap 3 with Angular UI Bootstrap */
+.modal {
+    display: block;
+}
 
-    /* Ease Display */
+/* Custom dialog/modal headers */
+.dialog-header-error { background-color: #d2322d; }
+.dialog-header-wait { background-color: #428bca; }
+.dialog-header-notify { background-color: #eeeeee; }
+.dialog-header-confirm { background-color: #333333; }
+.dialog-header-error span, .dialog-header-error h4,
+.dialog-header-wait span, .dialog-header-wait h4,
+.dialog-header-confirm span, .dialog-header-confirm h4 { color: #ffffff; }
+
+/* Ease Display */
     .pad { padding: 25px; }
 
 }

@@ -2,23 +2,18 @@
     <div id="ctrl-wrapper">
         <div class="page-header">
             <h1 id="navs">Shows</h1>
+            <ul class="breadcrumb">
+                <li><a href="#">Dashboard</a></li>
+                <li class="active">Shows</li>
+            </ul>
         </div>
 
         <!-- add show -->
-        <div ng-controller="MainCtrl" style="background-color: #eee; font-size:18px">
-            <div class="row-fluid" >
-                <div class="span8 pagination-centered hero-unit" style="margin-left:215px; margin-top:50px; background-color: #78d2b6;  ">
-                    <h1>AngularJS Modal Service</h1>
-                    <div class="span10 pagination-centered" style="margin-left:50px; margin-top:20px">
-                        <button ng-click="launchInlineModal()" class="btn btn-large btn-danger">Inline Modal</button>
-                        <button ng-click="launchObjectModal()" class="btn btn-large btn-danger">Object Modal</button>
-                        <button ng-click="launchSimpleModal()" class="btn btn-large btn-danger">Simple Modal</button>
-                        <button ng-click="launchComplexModal()" class="btn btn-large btn-danger">Complex Modal</button>
-                    </div>
-                </div>
+        <div ng-controller="MainCtrl">
+            <div class="row-fluid">
+                <button ng-click="launchSimpleModal()" class="btn btn-large btn-default">Add A Show</button>
             </div><!-- end .row-fluid -->
+
         </div><!-- end ng-controller -->
-
-
     </div> <!-- /. ctrl - wrapper -->
 </div> <!-- /. page wrapper  -->
