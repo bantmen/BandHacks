@@ -2,18 +2,18 @@
     <div id="ctrl-wrapper">
         <div class="page-header">
             <h1 id="navs">Shows</h1>
+            <ul class="breadcrumb">
+                <li><a href="#">Dashboard</a></li>
+                <li class="active">Shows</li>
+            </ul>
         </div>
 
         <!-- add show -->
-        <button ng-click='toggleModal()'>Add Show</button>
-        <modal-dialog show='modalShown' width='750px' height='60%'>
-            <p> ADD A SHOW! <p>
-        </modal-dialog>
+        <div ng-controller="MainCtrl">
+            <div class="row-fluid">
+                <button ng-click="launchSimpleModal()" class="btn btn-large btn-default">Add A Show</button>
+            </div><!-- end .row-fluid -->
 
-        <!-- shows list -->
-        <li ng-repeat="#">
-            <div ng-model="#.#">{{#.#}}<a href="" ng-click="#"></span></a></div>
-        </li>
-
+        </div><!-- end ng-controller -->
     </div> <!-- /. ctrl - wrapper -->
 </div> <!-- /. page wrapper  -->
