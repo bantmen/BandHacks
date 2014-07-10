@@ -1,9 +1,23 @@
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+
 <div class="modal-wrapper">
     <div class="row">
-        <div ng-controller="MainCtrl">
+        <div ng-controller="task in TasksController">
+            <h3>Description:</h3>
             <input type="text" class="form-control input-lg text-center col-lg-8 col-md-6 col-sm-6" placeholder="Enter your new task" ng-model="tempTask">
-            <br>
-            <button type="submit" class="btn btn-primary btn-lg">Save Task</button>
-        </div>
-    </div>
+
+
+            <h4>Due Date:</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div><!-- .END ng-controller -->
+    </div><!-- .END ROW -->
 </div><!-- .END MODAL WRAPPER -->

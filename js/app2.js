@@ -213,16 +213,15 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
             });
         };
 	
-	$scope.addTaskPopUp = function() {
+	    $scope.addTaskPopUp = function() {
             createDialogService('addTask.html', {
                 id: 'simpleDialog',
                 title: 'Add A Task',
                 backdrop: true,
-                success: {label: 'Add Task', fn: function() {console.log('addTask Modal Closed');}}
+                success: {label: 'Add Task', fn: function() {console.log('addTask Modal Closed');}} //add the Save Task functionality here
             });
         };
-	
-	
+
         $scope.launchComplexModal = function() {
             createDialogService('complexModal.html', {
                 id: 'complexDialog',
