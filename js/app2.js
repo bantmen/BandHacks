@@ -3,7 +3,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 .config(function($routeProvider) {
 	$routeProvider.when('/tasks', {
 		templateUrl: "tasks.html", 
-		controller: 'TasksController'
+		//controller: 'TasksController'
 	});
     $routeProvider.when('/shows', {
         templateUrl: "shows.html",
@@ -40,37 +40,37 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 .controller('TasksController', function($scope, $http){
 	var self = this;
 	self.tasks = [{}];  //tasks.num and tasks.task
-	self.createTask = function (data) {
+    $scope.createTask = function (data) {
 		self.tasks.push({task: data});
 		console.log(self.tasks);
-	};
-	self.deleteTask = function (data) {
-		var index = self.tasks.indexOf(data);
-		self.tasks.splice(index, 1);
-	};
-	self.deleteTask();  //to get rid of the first, idle X mark
-    $scope.create = function(){
+        //Each add also adds to a database
         $http.post('/api/tasks-create', self.tasks).then(function(res) {
             console.log(res);
         });
-    };
+	};
+    $scope.deleteTask = function (data) {
+		var index = self.tasks.indexOf(data);
+		self.tasks.splice(index, 1);
+	};
+    $scope.deleteTask();  //to get rid of the first, idle X mark
 })
 
 .controller('ShowsController', function($scope){
     var self = this;
     self.shows = [{}];  //tasks.num and tasks.task
-    self.createShow = function (data) {
+    $scope.createShow = function (data) {
         self.shows.push({shows: data});
         console.log(self.shows);
     };
-    self.deleteShow = function (data) {
+    $scope.deleteShow = function (data) {
         var index = self.shows.indexOf(data);
         self.shows.splice(index, 1);
     };
-    self.deleteShow();  //to get rid of the first, idle X mark
+    $scope.deleteShow();  //to get rid of the first, idle X mark
 })
 
 .controller("UserController", function($scope, $http){  //username, userpicture etc.
+    //console.log(app.controller());
 	$http.get('/api/user')
 		.success(function(data){
 			$scope.userName = data.username;
@@ -219,7 +219,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 id: 'simpleDialog',
                 title: 'Add A Task',
                 backdrop: true,
-                success: {label: 'Add Task', fn: function() {console.log('addTask Modal Closed');}}
+                success: {label: 'Add Task', fn: function() {$scope.createTask($scope.tempTask);}}
             });
         };
 	
