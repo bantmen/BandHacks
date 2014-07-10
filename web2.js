@@ -45,7 +45,7 @@ passport.use(new FacebookStrategy({
 				return done(null, user);   
 			 }
 			else {     
-				var sqlParams = [profile.displayName || "no displayname", profile.emails ? profile.emails[0].value : "no email", profile.username || "no username", "facebook", profile._json.id || "problem with _json.id"];
+				var sqlParams = [profile.displayName || "no displayname", profile.emails ? profile.emails[0].value : 'no email', profile.username || 'no username', 'facebook', profile._json.id || 'problem with _json.id'];
 				var query = client.query('INSERT INTO "Users" (name, email, username, provider, id) VALUES ($1, $2, $3, $4, $5)', sqlParams, function (err, result) {
 					user = {username : profile.displayName};
 					if (err) {
@@ -84,13 +84,21 @@ app.get("/", function(req, res) {
 	res.end();
 }); */
 
-
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/dashboard.html', failureRedirect: '/failed.html' }));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', { 
+	scope: ['email', 'user_about_me'],
+	successRedirect: '/dashboard.html', 
+	failureRedirect: '/failed.html' 
+	}
+));
 								
 app.get('/api/user', function(req, res) {
-		res.json(user);
-	});
+	res.json(user);
+});
+
+app.post('/api/tasks-create', function(req, res){
+    console.log(req);
+});
 								
 app.get('*', function(req, res) {
 	res.sendfile('dashboard.html');  //single page app starts on dashboard.html

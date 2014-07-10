@@ -9,10 +9,6 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
         templateUrl: "shows.html",
         controller: 'ShowsController'
     });
-	$routeProvider.when('/hello', {
-		templateUrl: "deneme.html", 
-		controller: 'HelloWorldCtrl'
-	});
 //	.otherwise({redirectTo: '/dashboard.html'});
 })
 
@@ -41,7 +37,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 	};
 }) */
 
-.controller('TasksController', function($scope){
+.controller('TasksController', function($scope, $http){
 	var self = this;
 	self.tasks = [{}];  //tasks.num and tasks.task
 	self.createTask = function (data) {
@@ -53,6 +49,11 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 		self.tasks.splice(index, 1);
 	};
 	self.deleteTask();  //to get rid of the first, idle X mark
+    $scope.create = function(){
+        $http.post('/api/tasks-create', self.tasks).then(function(res) {
+            console.log(res);
+        });
+    };
 })
 
 .controller('ShowsController', function($scope){
