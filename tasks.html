@@ -6,13 +6,13 @@
 
         <div ng-controller="TasksController as tCtrl">
             <input type="text" class="form-control input-lg text-center col-lg-8 col-md-6 col-sm-6" placeholder="Enter your new task" ng-model="tempTask">
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="tCtrl.createTask(tempTask)">Add Task</button>
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="addTaskPopUp()">Add Task</button>
             <br>
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="#">Save Task</button> 
             <h4> Currently Adding: </h4>{{tempTask}}
             <br>
             <h3> Task List </h3>
             <br>
-
 
             <!-- panel testing -->
             <div class="col-lg-4">
@@ -24,6 +24,7 @@
                         <div ng-model="task.task">{{task.task}}<a href="" ng-click="tCtrl.deleteTask(task)"> <span class="fa fa-ban"></span></a></div>
                     </div>
                 </div>
+            </div>
         </div><!-- /. tCtrl div -->
     </div>
 </div> <!-- /. wrapper div -->

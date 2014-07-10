@@ -212,6 +212,17 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 success: {label: 'Add Show', fn: function() {console.log('Simple modal closed');}}
             });
         };
+	
+	$scope.addTaskPopUp = function() {
+            createDialogService('addTask.html', {
+                id: 'simpleDialog',
+                title: 'Add A Task',
+                backdrop: true,
+                success: {label: 'Add Task', fn: function() {console.log('Simple modal closed');}}
+            });
+        };
+	
+	
         $scope.launchComplexModal = function() {
             createDialogService('complexModal.html', {
                 id: 'complexDialog',
