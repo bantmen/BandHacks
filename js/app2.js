@@ -142,7 +142,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
     }; // end launch
 
 })
-/* modal pop ups*/
+/*MODAL POP UPS*/
     .controller('MainCtrl', ['$scope', 'createDialog', function($scope, createDialogService) {
         $scope.launchInlineModal = function() {
             createDialogService({
@@ -209,7 +209,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 id: 'simpleDialog',
                 title: 'Add A Show',
                 backdrop: true,
-                success: {label: 'Add Show', fn: function() {console.log('Simple modal closed');}}
+                success: {label: 'Add Show', fn: function() {console.log('Add Show Modal Closed');}}
             });
         };
 	
@@ -218,7 +218,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 id: 'simpleDialog',
                 title: 'Add A Task',
                 backdrop: true,
-                success: {label: 'Add Task', fn: function() {console.log('Simple modal closed');}}
+                success: {label: 'Add Task', fn: function() {console.log('addTask Modal Closed');}}
             });
         };
 	
