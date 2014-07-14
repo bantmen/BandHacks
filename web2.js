@@ -97,7 +97,12 @@ app.get('/api/user', function(req, res) {
 });
 
 app.post('/api/tasks-create', function(req, res){
-    console.log(req);
+//    pg.connect(connectionString, function (err, client) {
+//        client.query('INSERT INTO dashboard () VALUES()', sqlParams, function(err, result)){
+//
+//        }
+//    })
+//    });
 });
 								
 app.get('*', function(req, res) {
@@ -106,3 +111,4 @@ app.get('*', function(req, res) {
 	
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {console.log("Listening on port: " + port)});
+

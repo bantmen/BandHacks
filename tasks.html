@@ -1,4 +1,4 @@
-<div id="page-wrapper">
+<div ng-controller="TasksController as tCtrl" id="page-wrapper">
     <div id="ctrl-wrapper">
         <div class="page-header">
             <h1 id="navs">Tasks</h1>
@@ -16,10 +16,12 @@
                     <h3 class="panel-title">Current Tasks</h3>
                 </div>
             </div>
-
-            <div class="panel-body" ng-repeat="task in tCtrl.tasks">
-                <div ng-model="task.task">{{task.task}}<a href="" ng-click="tCtrl.deleteTask(task)"><span class="fa fa-ban"></span></a></div>
-            </div>
+            <li ng-repeat="task in tCtrl.tasks">
+                <div ng-model="task.task">{{task.task}}<a href="" ng-click="deleteTask(task)">  X</a></div>
+            </li>
+            <!--<div class="panel-body" ng-repeat="task in tCtrl.tasks">-->
+                <!--<div ng-model="task.task">{{task.task}}<a href="" ng-click="deleteTask(task)"><span class="fa fa-ban"></span></a></div>-->
+            <!--</div>-->
 
             <button class="btn btn-primary" ng-click="addTaskPopUp()">Add Task</button>
 
