@@ -1,11 +1,35 @@
 <!-- ADD MERCH POPUP  -->
 
-<div ng-controller="TasksController as tCtrl" class="modal-wrapper">
+<div ng-controller="#" class="modal-wrapper"> <!-- need to add correct ng-controller --> 
     <div class="row">
-        <div ng-controller="MainCtrl">
-            <input type="text" class="form-control input-lg text-center col-lg-8 col-md-6 col-sm-6" placeholder="Enter your new task" ng-model="tempTask">
+        <div ng-controller="#"> <!-- need to add in correct ng-controller --> 
+	    <h4>New Item Name</h4>
+            <input type="text" class="form-control input-lg text-center col-lg-8 col-md-6 col-sm-6" placeholder="Enter New Item Name" ng-model="tempTask">
             <br>
-            <button type="submit" class="btn btn-primary btn-lg">Save Task</button>
+            
+            <h4>Item Type</h4>
+            <ul class="dropdown-menu">
+	    </ul>
+            <h4>Item Purchase Cost</h4>
+            <input type="text" class="form-control input-lg text-center col-2" placeholder="Enter Item Cost" ng-model="#">
+            <br>
+            
+            <h4>Item Sale Price</h4>
+            <input type="text" class="form-control input-lg text-center col-2 placeholder="Enter Item Sale Price" ng-model="#"> 
+            <br> 
+            
+            <h4>Ordered From</h4>
+            <input type="text" class="form-control input-lg text-center col-2 placeholder="Company Purchased From" ng-model="#">
+            
+            <!-- drag and drop field for artwork // ng-drop --> 
+            
+            
+            <!-- save the form --> 
+            <button type="submit" class="btn btn-primary btn-lg">Save Merch Item</button>
         </div>
     </div>
+    
+    <div class="row"> 
+	<
+    </div> 
 </div><!-- .END MODAL WRAPPER -->
