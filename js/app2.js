@@ -38,6 +38,9 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 }) */
 
 .controller('TasksController', function($scope, $http){
+    $scope.$watch('tempTask', function(){
+        console.log($scope.tempTask);
+    });
 	var self = this;
 	self.tasks = [{}];  //tasks.num and tasks.task
     $scope.createTask = function (data) {
@@ -144,7 +147,10 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 
 })
 /*MODAL POP UPS*/
-    .controller('MainCtrl', ['$scope', 'createDialog', function($scope, createDialogService) {
+    .controller('MainCtrl', ['$scope', 'createDialog', '$rootScope', function($scope, createDialogService, $rootScope) {
+        $scope.$watch('tempTask', function(){
+            $rootScope.tempTask = $scope.tempTask;
+        });
         $scope.launchInlineModal = function() {
             createDialogService({
                 id: 'simpleDialog',
@@ -219,7 +225,11 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 id: 'simpleDialog',
                 title: 'Add A Task',
                 backdrop: true,
-                success: {label: 'Add Task', fn: function() {$scope.createTask($scope.tempTask);}}
+                success: {label: 'Add Task', fn: function() {
+                        console.log('modular success');
+                        $scope.createTask($scope.tempTask);
+                    }
+                }
             });
         };
 	
