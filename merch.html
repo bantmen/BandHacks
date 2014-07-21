@@ -1,0 +1,30 @@
+<div ng-controller="#" id="page-wrapper">
+    <div id="ctrl-wrapper">
+        <div class="page-header">
+            <h1 id="navs">Merch</h1>
+            <ul class="breadcrumb">
+                <li><a href="#">Dashboard</a></li>
+                <li class="active">Merch</li>
+            </ul>
+        </div><!-- end of header -->
+        <!-- #### CONTENT STARTS HERE ####-->
+
+        <!-- #### merch list panels ####-->
+        <div class="col-lg-12" ng-controller="#">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Merch Designs</h3>
+                </div>
+            </div>
+            <li ng-repeat="# in #">
+                <div ng-model="#.#">{{#.#}}<a href="" ng-click="#.#"><span class="fa fa-minus-circle"></span></a></div>
+            </li>
+            <!--<div class="panel-body" ng-repeat="task in tCtrl.tasks">-->
+                <!--<div ng-model="task.task">{{task.task}}<a href="" ng-click="deleteTask(task)"><span class="fa fa-ban"></span></a></div>-->
+            <!--</div>-->
+
+            <button class="btn btn-primary" ng-click="addMerchPopUp()">Add Merch Item</button>
+
+        </div>
+    </div>
+</div> <!-- /. wrapper div -->

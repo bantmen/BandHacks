@@ -232,6 +232,15 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 }
             });
         };
+
+    $scope.addMerchPopUp = function() {
+        createDialogService('addMerch.html', {
+            id: 'simpleDialog',
+            title: 'Add Merch',
+            backdrop: true,
+            success: {label: 'Add Merch', fn: function() {$scope.createTask($scope.tempTask);}}
+        });
+    };
 	
 	
         $scope.launchComplexModal = function() {
