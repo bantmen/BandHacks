@@ -20,6 +20,7 @@
     "url": "https://github.com/cberkay/BandHacks/issues"
   },
   "dependencies": {
+    "body-parser": "^1.5.0",
     "express": "^4.4.1",
     "fs": "0.0.1",
     "http": "0.0.0",

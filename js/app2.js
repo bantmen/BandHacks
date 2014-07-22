@@ -2,7 +2,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 
 .config(function($routeProvider) {
 	$routeProvider.when('/tasks', {
-		templateUrl: "tasks.html", 
+		templateUrl: "tasks.html"
 		//controller: 'TasksController'
 	});
     $routeProvider.when('/shows', {
@@ -12,43 +12,23 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 //	.otherwise({redirectTo: '/dashboard.html'});
 })
 
-/* .controller('TasksController', function($scope, $sce){
-	var taskList = [];
-	$scope.createTask = function (task) {
-		if (inputCheck(task)) {
-			taskList.push(task);
-			$scope.taskDisplay = "";
-			var temp = "";
-			for (var i=0;i<taskList.length;i++) {
-				temp += (i+1).toString() + "- " + taskList[i] + '<br>';
-				console.log(temp);
-			}	
-			// $sce.trustAsHtml($scope.taskDisplay);
-			$scope.taskDisplay = temp;
-		}
-		else $scope.tempTask = "Please do not use angular brackets.";
-
-	};
-	inputCheck = function(inpStr) {
-		if (inpStr.search('<') != -1 && inpStr.search('>') != -1 && inpStr.search('<br>') == 0) {
-			return false;
-		}
-		else return true;
-	};
-}) */
-
-.controller('TasksController', function($scope, $http){
-    $scope.$watch('tempTask', function(){
-        console.log($scope.tempTask);
-    });
+.controller('TasksController', function($scope, $http, $rootScope){
 	var self = this;
-	self.tasks = [{}];  //tasks.num and tasks.task
-    $scope.createTask = function (data) {
+	self.tasks = [{}];
+    $http.get('/api/tasks-retrieve')
+        .success(function(data){
+            self.tasks = data;
+            if (!data) console.log('Empty success');
+            else console.log('Success: ' + data);
+        })
+        .error(function(data){
+            console.log('Error: ' + data);
+        });
+    $rootScope.createTask = function (data) {
 		self.tasks.push({task: data});
-		console.log(self.tasks);
-        //Each add also adds to a database
         $http.post('/api/tasks-create', self.tasks).then(function(res) {
             console.log(res);
+            $rootScope.tempTask = null;  //reset tempTask after success
         });
 	};
     $scope.deleteTask = function (data) {
@@ -60,7 +40,8 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 
 .controller('ShowsController', function($scope){
     var self = this;
-    self.shows = [{}];  //tasks.num and tasks.task
+    self.shows = [{}];
+
     $scope.createShow = function (data) {
         self.shows.push({shows: data});
         console.log(self.shows);
@@ -73,7 +54,6 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 })
 
 .controller("UserController", function($scope, $http){  //username, userpicture etc.
-    //console.log(app.controller());
 	$http.get('/api/user')
 		.success(function(data){
 			$scope.userName = data.username;
@@ -227,7 +207,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 backdrop: true,
                 success: {label: 'Add Task', fn: function() {
                         console.log('modular success');
-                        $scope.createTask($scope.tempTask);
+                        $scope.createTask($rootScope.tempTask);
                     }
                 }
             });
