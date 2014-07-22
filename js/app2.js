@@ -14,19 +14,26 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 
 .controller('TasksController', function($scope, $http, $rootScope){
 	var self = this;
-	self.tasks = [{}];
+    self.tasks = [];
     $http.get('/api/tasks-retrieve')
         .success(function(data){
-            self.tasks = data;
-            if (!data) console.log('Empty success');
-            else console.log('Success: ' + data);
+            if (!data){
+                console.log('Empty success');
+            }
+            else{
+                self.tasks = data;
+                console.log('Success: ' + data);
+            }
+            console.log(self.tasks);
         })
         .error(function(data){
             console.log('Error: ' + data);
         });
-    $rootScope.createTask = function (data) {
-		self.tasks.push({task: data});
-        $http.post('/api/tasks-create', self.tasks).then(function(res) {
+    $scope.createTask = function (data) {
+		self.tasks.push(data);
+        var jData = JSON.stringify(self.tasks);
+        console.log(jData);
+        $http.post('/api/tasks-create', jData).then(function(res) {
             console.log(res);
             $rootScope.tempTask = null;  //reset tempTask after success
         });
@@ -34,8 +41,13 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
     $scope.deleteTask = function (data) {
 		var index = self.tasks.indexOf(data);
 		self.tasks.splice(index, 1);
+        var jData = JSON.stringify({'ind' : index});
+        console.log(jData);
+        $http.post('/api/tasks-delete', jData).then(function(res) {
+            console.log(res);
+        });
 	};
-    $scope.deleteTask();  //to get rid of the first, idle X mark
+    //$scope.deleteTask();  //to get rid of the first, idle X mark
 })
 
 .controller('ShowsController', function($scope){
@@ -57,7 +69,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 	$http.get('/api/user')
 		.success(function(data){
 			$scope.userName = data.username;
-			console.log('Success: ' + data);
+			console.log('Success: ' + data.username);
 		})
 		.error(function(data){
 			console.log('Error: ' + data);
@@ -84,7 +96,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 
 
             case 'addShow':
-                dlg = $dialogs.create('/addshow.html','whatsYourNameCtrl',{},{key: false,back: 'static'});
+                dlg = $dialogs.create('/addShow.html','whatsYourNameCtrl',{},{key: false,back: 'static'});
                 dlg.result.then(function(name){
                     $scope.name = name;
                 },function(){
@@ -206,8 +218,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 title: 'Add A Task',
                 backdrop: true,
                 success: {label: 'Add Task', fn: function() {
-                        console.log('modular success');
-                        $scope.createTask($rootScope.tempTask);
+                        $scope.createTask($scope.tempTask);
                     }
                 }
             });
@@ -218,7 +229,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
             id: 'simpleDialog',
             title: 'Add Merch',
             backdrop: true,
-            success: {label: 'Add Merch', fn: function() {$scope.createTask($scope.tempTask);}}
+            success: {label: 'Add Merch', fn: function() {}}
         });
     };
 	

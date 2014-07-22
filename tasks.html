@@ -16,13 +16,9 @@
                     <h3 class="panel-title">Current Tasks</h3>
                 </div>
             </div>
-            <li ng-repeat="task in tCtrl.tasks">
-                <div ng-model="task.task">{{task.task}}<a href="" ng-click="deleteTask(task)">  X</a></div>
+            <li ng-repeat="task in tCtrl.tasks track by $index">
+                <div ng-model="task">{{task}}<a href="" ng-click="deleteTask(task)">  X</a></div>
             </li>
-            <!--<div class="panel-body" ng-repeat="task in tCtrl.tasks">-->
-                <!--<div ng-model="task.task">{{task.task}}<a href="" ng-click="deleteTask(task)"><span class="fa fa-ban"></span></a></div>-->
-            <!--</div>-->
-
             <button class="btn btn-primary" ng-click="addTaskPopUp()">Add Task</button>
 
         </div>

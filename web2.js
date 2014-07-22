@@ -10,12 +10,12 @@ var express = require("express"),
     //connectionString = "postgres://qsxtzbqlsljdiy:HVNOigVMRb_JxhP4II7uut1JV9@ec2-54-197-237-231.compute-1.amazonaws.com:5432/dbig67cfjnt8na";
 
 
-app.use(logfmt.requestLogger());
+//app.use(logfmt.requestLogger());
 
 app.use(express.static(__dirname));
 
 app.use(passport.initialize());
-app.use(passport.session()); 
+app.use(passport.session());
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -61,56 +61,100 @@ passport.use(new FacebookStrategy({
 ));
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { 
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 	scope: ['email', 'user_about_me'],
-	successRedirect: '/dashboard.html', 
-	failureRedirect: '/failed.html' 
+	successRedirect: '/dashboard.html',
+	failureRedirect: '/failed.html'
 	}
 ));
-								
+
 app.get('/api/user', function(req, res) {
 	res.json(user);
     res.end();
 });
 
 app.get('/api/tasks-retrieve', function(req, res){
-    res.end();
+    console.log('inside retrieve');
     pg.connect(connectionString, function (err, client) {
         client.query('SELECT tasks from "Users" WHERE id=$1', [user.id], function(err, result){
             if (err) {
                 return console.log(err);
             }
             if (result.rows[0] && result.rows[0].tasks != null){ //works because id is the Unique Key
-                console.log(result.rows[0].tasks);
+                console.log('%s %s','retrieved: ', result.rows[0].tasks)
                 var tasksArray = result.rows[0].tasks.split("$next$");
-                res.json(tasksArray);
-                res.end()
+                tasksArray.pop();
+                res.send(tasksArray);
             }
         });
     });
 });
 
 app.post('/api/tasks-create', bodyParser(), function(req, res){
-    console.log(JSON.stringify(req.body));
-    res.end();
+    console.log('inside create');
+    var tasks = req.body[0];
+    console.log('first');
+    console.log(tasks);
     pg.connect(connectionString, function (err, client) {
         client.query('SELECT tasks from "Users" WHERE id=$1', [user.id], function(err, selectResult){
             if (err) {
-                return console.log(err);
+                console.log('first error');
+                console.log(err);
             }
-        });
-        client.query('INSERT INTO "Users"(tasks) VALUES($1)', [selectResult+req.body+'$next$'], function(err, insertResult){
-            if (err) {
-                return console.log(err);
+            else{
+                console.log('between');
+                console.log(selectResult.rows[0].tasks);
+                if (selectResult.rows[0].tasks == null){
+                    var tasksString = tasks+'$next$';
+                }
+                else{
+                    var tasksString = selectResult.rows[0].tasks+tasks+'$next$';
+                }
+                client.query('UPDATE "Users" SET tasks=$1 WHERE id=$2', [tasksString, user.id], function(err, insertResult){
+                    console.log('second');
+                    console.log(tasksString);
+                    if (err) {
+                        console.log('second error');
+                        console.log(err);
+                    }
+                });
             }
         });
     });
 });
-								
+
+app.post('/api/tasks-delete', bodyParser(), function(req, res){
+    console.log('inside delete');
+    var index = req.body.ind;
+    console.log(index);
+    pg.connect(connectionString, function (err, client) {
+        client.query('SELECT tasks from "Users" WHERE id=$1', [user.id], function(err, selectResult){
+            if (err) {
+                console.log('first error');
+                console.log(err);
+            }
+            else{
+                if (selectResult){
+                    var tasksArray = selectResult.rows[0].tasks.split("$next$");
+                    tasksArray.splice(index, 1);
+                    var tasksString = tasksArray.join('$next$')
+                }
+                client.query('UPDATE "Users" SET tasks=$1 WHERE id=$2', [tasksString, user.id], function(err, insertResult){
+                    console.log(tasksString);
+                    if (err) {
+                        console.log('second error');
+                        console.log(err);
+                    }
+                });
+            }
+        });
+    });
+});
+
 app.get('*', function(req, res) {
 	res.sendfile('dashboard.html');  //single page app starts on dashboard.html
 });
-	
+
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {console.log("Listening on port: " + port)});
 
