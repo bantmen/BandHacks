@@ -75,10 +75,15 @@ app.get('/api/user', function(req, res) {
 
 app.get('/api/tasks-retrieve', function(req, res){
     console.log('inside retrieve');
-    pg.connect(connectionString, function (err, client) {
+    pg.connect(connectionString, function (err, client, done) {
         client.query('SELECT tasks from "Users" WHERE id=$1', [user.id], function(err, result){
+            console.log('--------');
+            console.log(result);
+            console.log('--------');
+            console.log(result.rows);
+            done();
             if (err) {
-                return console.log(err);
+                console.log(err);
             }
             if (result.rows[0] && result.rows[0].tasks != null){ //works because id is the Unique Key
                 console.log('%s %s','retrieved: ', result.rows[0].tasks)
@@ -95,11 +100,12 @@ app.post('/api/tasks-create', bodyParser(), function(req, res){
     var tasks = req.body[0];
     console.log('first');
     console.log(tasks);
-    pg.connect(connectionString, function (err, client) {
+    pg.connect(connectionString, function (err, client, done) {
         client.query('SELECT tasks from "Users" WHERE id=$1', [user.id], function(err, selectResult){
             if (err) {
                 console.log('first error');
                 console.log(err);
+                done();
             }
             else{
                 console.log('between');
@@ -113,6 +119,7 @@ app.post('/api/tasks-create', bodyParser(), function(req, res){
                 client.query('UPDATE "Users" SET tasks=$1 WHERE id=$2', [tasksString, user.id], function(err, insertResult){
                     console.log('second');
                     console.log(tasksString);
+                    done();
                     if (err) {
                         console.log('second error');
                         console.log(err);
@@ -127,11 +134,12 @@ app.post('/api/tasks-delete', bodyParser(), function(req, res){
     console.log('inside delete');
     var index = req.body.ind;
     console.log(index);
-    pg.connect(connectionString, function (err, client) {
+    pg.connect(connectionString, function (err, client, done) {
         client.query('SELECT tasks from "Users" WHERE id=$1', [user.id], function(err, selectResult){
             if (err) {
                 console.log('first error');
                 console.log(err);
+                done();
             }
             else{
                 if (selectResult){
@@ -141,6 +149,7 @@ app.post('/api/tasks-delete', bodyParser(), function(req, res){
                 }
                 client.query('UPDATE "Users" SET tasks=$1 WHERE id=$2', [tasksString, user.id], function(err, insertResult){
                     console.log(tasksString);
+                    done();
                     if (err) {
                         console.log('second error');
                         console.log(err);

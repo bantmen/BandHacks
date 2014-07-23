@@ -14,7 +14,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 
 .controller('TasksController', function($scope, $http, $rootScope){
 	var self = this;
-    self.tasks = [];
+    if (!self.tasks) self.tasks = [];
     $http.get('/api/tasks-retrieve')
         .success(function(data){
             if (!data){
@@ -29,7 +29,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
         .error(function(data){
             console.log('Error: ' + data);
         });
-    $scope.createTask = function (data) {
+    $rootScope.createTask = function (data) {
 		self.tasks.push(data);
         var jData = JSON.stringify(self.tasks);
         console.log(jData);
@@ -218,7 +218,7 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 title: 'Add A Task',
                 backdrop: true,
                 success: {label: 'Add Task', fn: function() {
-                        $scope.createTask($scope.tempTask);
+                        $rootScope.createTask($rootScope.tempTask);
                     }
                 }
             });
