@@ -15,6 +15,18 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 .controller('TasksController', function($scope, $http, $rootScope){
 	var self = this;
     if (!self.tasks) self.tasks = [];
+    $rootScope.createTask = function (data) {
+		self.tasks.push(data);
+        console.log(self.tasks);
+        var jData = JSON.stringify({'task':data});
+        console.log(jData);
+        $http.post('/api/tasks-create', jData).then(function(res) {
+            console.log(res);
+            $rootScope.apply(function(){
+                $rootScope.tempTask = null;  //reset tempTask after success
+            });
+        });
+	};
     $http.get('/api/tasks-retrieve')
         .success(function(data){
             if (!data){
@@ -24,20 +36,10 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
                 self.tasks = data;
                 console.log('Success: ' + data);
             }
-            console.log(self.tasks);
         })
         .error(function(data){
             console.log('Error: ' + data);
         });
-    $rootScope.createTask = function (data) {
-		self.tasks.push(data);
-        var jData = JSON.stringify(self.tasks);
-        console.log(jData);
-        $http.post('/api/tasks-create', jData).then(function(res) {
-            console.log(res);
-            $rootScope.tempTask = null;  //reset tempTask after success
-        });
-	};
     $scope.deleteTask = function (data) {
 		var index = self.tasks.indexOf(data);
 		self.tasks.splice(index, 1);

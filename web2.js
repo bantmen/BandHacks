@@ -97,9 +97,9 @@ app.get('/api/tasks-retrieve', function(req, res){
 
 app.post('/api/tasks-create', bodyParser(), function(req, res){
     console.log('inside create');
-    var tasks = req.body[0];
+    var task = req.body.task;
     console.log('first');
-    console.log(tasks);
+    console.log(task);
     pg.connect(connectionString, function (err, client, done) {
         client.query('SELECT tasks from "Users" WHERE id=$1', [user.id], function(err, selectResult){
             if (err) {
@@ -111,10 +111,10 @@ app.post('/api/tasks-create', bodyParser(), function(req, res){
                 console.log('between');
                 console.log(selectResult.rows[0].tasks);
                 if (selectResult.rows[0].tasks == null){
-                    var tasksString = tasks+'$next$';
+                    var tasksString = task+'$next$';
                 }
                 else{
-                    var tasksString = selectResult.rows[0].tasks+tasks+'$next$';
+                    var tasksString = selectResult.rows[0].tasks+task+'$next$';
                 }
                 client.query('UPDATE "Users" SET tasks=$1 WHERE id=$2', [tasksString, user.id], function(err, insertResult){
                     console.log('second');
