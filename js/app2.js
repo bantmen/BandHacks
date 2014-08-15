@@ -231,39 +231,48 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 }) // end whatsYourNameCtrl
 
 .controller('DashCtrl', function($scope) {
-    $scope.config = {
-        title: 'Products',
-        tooltips: true,
-        labels: false,
-        mouseover: function() {},
-        mouseout: function() {},
-        click: function() {},
-        legend: {
-            display: true,
-            //could be 'left, right'
-            position: 'right'
-        }
-    };
+        $scope.config = {
+            title: 'Products',
+            tooltips: true,
+            labels: false,
+            mouseover: function () {
+            },
+            mouseout: function () {
+            },
+            click: function () {
+            },
+            legend: {
+                display: true,
+                //could be 'left, right'
+                position: 'right'
+            }
+        };
 
-    //we should have this sync up to a database or sync up to imported info
-    $scope.data = {
-        series: ['Sales', 'Income', 'Expense', 'Laptops', 'Keyboards'],
-        data: [{
-            x: "Laptops",
-            y: [100, 500, 0],
-            tooltip: "this is tooltip"
-        }, {
-            x: "Desktops",
-            y: [300, 100, 100]
-        }, {
-            x: "Mobiles",
-            y: [351]
-        }, {
-            x: "Tablets",
-            y: [54, 0, 879]
-        }]
-    };
-)}//end DashController
+        //we should have this sync up to a database or sync up to imported info
+        $scope.data = {
+            series: ['Sales', 'Income', 'Expense', 'Laptops', 'Keyboards'],
+            data: [
+                {
+                    x: "Laptops",
+                    y: [100, 500, 0],
+                    tooltip: "this is tooltip"
+                },
+                {
+                    x: "Desktops",
+                    y: [300, 100, 100]
+                },
+                {
+                    x: "Mobiles",
+                    y: [351]
+                },
+                {
+                    x: "Tablets",
+                    y: [54, 0, 879]
+                }
+            ]
+        };
+    })
+//end DashController
             
 //start of datepicker            
 var DatepickerDemoCtrl = function ($scope) {
@@ -305,6 +314,6 @@ var DatepickerDemoCtrl = function ($scope) {
 
 //end of datepicker functions s
 
-.run(['$templateCache',function($templateCache){
+run(['$templateCache',function($templateCache){
 	$templateCache.put('/dialogs/whatsyourname.html','<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> User\'s Name</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">Name:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.name" ng-keyup="hitEnter($event)" required><span class="help-block">Enter your full name, first &amp; last.</span></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
 }]); // end run / controllers / module
