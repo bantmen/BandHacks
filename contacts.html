@@ -1,0 +1,19 @@
+<div ng-controller="ContactsCtrl" id="page-wrapper">
+    <div id="ctrl-wrapper">
+        <div class="page-header">
+            <h1 id="navs">Contacts</h1>
+            <ul class="breadcrumb">
+                <li><a href="#">Dashboard</a></li>
+                <li class="active">Shows</li>
+            </ul>
+        </div>
+
+        <!-- add show -->
+        <div ng-controller="MainCtrl">
+            <div class="row-fluid">
+                <button ng-click="launchSimpleModal()" class="btn btn-large btn-default">Add A Show</button>
+            </div><!-- end .row-fluid -->
+
+        </div><!-- end ng-controller -->
+    </div> <!-- /. ctrl - wrapper -->
+</div> <!-- /. page wrapper  -->

@@ -3,15 +3,19 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
 .config(function($routeProvider) {
 	$routeProvider.when('/tasks', {
 		templateUrl: "tasks.html"
-		//controller: 'TasksController'
 	});
     $routeProvider.when('/shows', {
-        templateUrl: "shows.html",
-        controller: 'ShowsController'
+        templateUrl: "shows.html"
+    });
+    $routeProvider.when('/finances', {
+        templateUrl: "finances.html"
     });
     $routeProvider.when('/merch.html', {
-            templateUrl: "merch.html",
-        });
+        templateUrl: "merch.html"
+    });
+    $routeProvider.when('/contacts.html', {
+        templateUrl: "contacts.html"
+    });
 //	.otherwise({redirectTo: '/dashboard.html'});
 })
 
@@ -70,6 +74,10 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
     $scope.deleteShow();  //to get rid of the first, idle X mark
 })
 
+//Finances controller
+.controller('FinanceCtrl', function(){
+})
+
 .controller("UserController", function($scope, $http){  //username, userpicture etc.
 	$http.get('/api/user')
 		.success(function(data){
@@ -86,81 +94,81 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
    $scope.helloMessage="Hello World";
 })
 
-/*MODAL POP UPS*/
-    .controller('MainCtrl', ['$scope', 'createDialog', '$rootScope', function($scope, createDialogService, $rootScope) {
-        $scope.$watch('tempTask', function(){
-            $rootScope.tempTask = $scope.tempTask;
+//Modal Pop Ups
+.controller('MainCtrl', ['$scope', 'createDialog', '$rootScope', function($scope, createDialogService, $rootScope) {
+    $scope.$watch('tempTask', function(){
+        $rootScope.tempTask = $scope.tempTask;
+    });
+    $scope.launchInlineModal = function() {
+        createDialogService({
+            id: 'simpleDialog',
+            template:
+                '<div class="row-fluid">' +
+                ' <h3>Venue Name</h3>' +
+                ' <div>' +
+                '   <div class="codebox">' +
+                '<pre>' +
+                'createDialog({\n' +
+                '    id: "inlineDialog",\n' +
+                '    <span style="color:red">template: "&lt;div>&lt;!--template HTML here...-->&lt;/div>"</span>\n' +
+                '    title: "A Inline Modal Dialog",\n' +
+                '    backdrop: true,\n' +
+                '    success: {\n' +
+                '        label: "Yay",\n' +
+                '        fn: function(){\n' +
+                '            console.log("Inline modal closed");\n' +
+                '        }\n' +
+                '    }\n' +
+                '});\n' +
+                '</pre>\n' +
+                '   </div>\n' +
+                ' </div>\n' +
+                '</div>',
+            title: 'Add A Show',
+            backdrop: true,
+            success: {label: 'Success', fn: function() {console.log('Inline modal closed');}}
         });
-        $scope.launchInlineModal = function() {
-            createDialogService({
-                id: 'simpleDialog',
-                template:
+    };
+    $scope.launchObjectModal = function() {
+        createDialogService({
+            id: 'simpleDialog',
+            template: angular.element(
                     '<div class="row-fluid">' +
-                    ' <h3>Venue Name</h3>' +
+                    ' <h3>This is how the Simple Modal was launched</h3>' +
                     ' <div>' +
                     '   <div class="codebox">' +
                     '<pre>' +
                     'createDialog({\n' +
-                    '    id: "inlineDialog",\n' +
-                    '    <span style="color:red">template: "&lt;div>&lt;!--template HTML here...-->&lt;/div>"</span>\n' +
-                    '    title: "A Inline Modal Dialog",\n' +
+                    '    id: "objectDialog",\n' +
+                    '    <span style="color:red">template: angular.element("...")</span>\n' +
+                    '    title: "A Object Modal Dialog",\n' +
                     '    backdrop: true,\n' +
                     '    success: {\n' +
                     '        label: "Yay",\n' +
                     '        fn: function(){\n' +
-                    '            console.log("Inline modal closed");\n' +
+                    '            console.log("Object modal closed");\n' +
                     '        }\n' +
                     '    }\n' +
                     '});\n' +
                     '</pre>\n' +
                     '   </div>\n' +
                     ' </div>\n' +
-                    '</div>',
-                title: 'Add A Show',
-                backdrop: true,
-                success: {label: 'Success', fn: function() {console.log('Inline modal closed');}}
-            });
-        };
-        $scope.launchObjectModal = function() {
-            createDialogService({
-                id: 'simpleDialog',
-                template: angular.element(
-                        '<div class="row-fluid">' +
-                        ' <h3>This is how the Simple Modal was launched</h3>' +
-                        ' <div>' +
-                        '   <div class="codebox">' +
-                        '<pre>' +
-                        'createDialog({\n' +
-                        '    id: "objectDialog",\n' +
-                        '    <span style="color:red">template: angular.element("...")</span>\n' +
-                        '    title: "A Object Modal Dialog",\n' +
-                        '    backdrop: true,\n' +
-                        '    success: {\n' +
-                        '        label: "Yay",\n' +
-                        '        fn: function(){\n' +
-                        '            console.log("Object modal closed");\n' +
-                        '        }\n' +
-                        '    }\n' +
-                        '});\n' +
-                        '</pre>\n' +
-                        '   </div>\n' +
-                        ' </div>\n' +
-                        '</div>'),
-                title: 'A Object Modal Dialog',
-                backdrop: true,
-                success: {label: 'Success', fn: function() {console.log('Object modal closed');}}
-            });
-        };
-        $scope.launchSimpleModal = function() {
-            createDialogService('addShow.html', {
-                id: 'simpleDialog',
-                title: 'Add A Show',
-                backdrop: true,
-                success: {label: 'Add Show', fn: function() {console.log('Add Show Modal Closed');}}
-            });
-        };
-	
-	$scope.addTaskPopUp = function() {
+                    '</div>'),
+            title: 'A Object Modal Dialog',
+            backdrop: true,
+            success: {label: 'Success', fn: function() {console.log('Object modal closed');}}
+        });
+    };
+    $scope.launchSimpleModal = function() {
+        createDialogService('addShow.html', {
+            id: 'simpleDialog',
+            title: 'Add A Show',
+            backdrop: true,
+            success: {label: 'Add Show', fn: function() {console.log('Add Show Modal Closed');}}
+        });
+    };
+
+    $scope.addTaskPopUp = function() {
             createDialogService('addTask.html', {
                 id: 'simpleDialog',
                 title: 'Add A Task',
@@ -172,6 +180,17 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
             });
         };
 
+    $scope.addBandPopUp = function() {
+        createDialogService('addBand.html', {
+            id: 'simpleDialog',
+            title: 'Add Your Band',
+            backdrop: true,
+            success: {label: 'Add Task', fn: function() {
+            }
+            }
+        });
+    };
+
     $scope.addMerchPopUp = function() {
         createDialogService('addMerch.html', {
             id: 'simpleDialog',
@@ -180,38 +199,38 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
             success: {label: 'Add Merch', fn: function() {}}
         });
     };
-	
-	
-        $scope.launchComplexModal = function() {
-            createDialogService('complexModal.html', {
-                id: 'complexDialog',
-                title: 'A Complex Modal Dialog',
-                backdrop: true,
-                controller: 'ComplexModalController',
-                success: {label: 'Success', fn: function() {console.log('Complex modal closed');}}
-            }, {
-                myVal: 15,
-                assetDetails: {
-                    name: 'My Asset',
-                    description: 'A Very Nice Asset'
-                }
-            });
-        };
-    }])
-    .factory('SampleFactory', function() {
-        return {
-            sample: function() {
-                console.log('This is a sample');
+
+
+    $scope.launchComplexModal = function() {
+        createDialogService('complexModal.html', {
+            id: 'complexDialog',
+            title: 'A Complex Modal Dialog',
+            backdrop: true,
+            controller: 'ComplexModalController',
+            success: {label: 'Success', fn: function() {console.log('Complex modal closed');}}
+        }, {
+            myVal: 15,
+            assetDetails: {
+                name: 'My Asset',
+                description: 'A Very Nice Asset'
             }
-        };
-    })
-    .controller('ComplexModalController', ['$scope', 'SampleFactory', 'myVal', 'assetDetails',
-        function($scope, SampleFactory, myVal, assetDetails) {
-            $scope.myVal = myVal;
-            $scope.asset = assetDetails;
-            SampleFactory.sample();
-        }])
-    /* end modal testing */
+        });
+    };
+}])
+.factory('SampleFactory', function() {
+    return {
+        sample: function() {
+            console.log('This is a sample');
+        }
+    };
+})
+.controller('ComplexModalController', ['$scope', 'SampleFactory', 'myVal', 'assetDetails',
+    function($scope, SampleFactory, myVal, assetDetails) {
+        $scope.myVal = myVal;
+        $scope.asset = assetDetails;
+        SampleFactory.sample();
+    }])
+/* end modal testing */
 
 .controller('whatsYourNameCtrl',function($scope,$modalInstance,data){
 	$scope.user = {name : ''};
@@ -311,9 +330,8 @@ var DatepickerDemoCtrl = function ($scope) {
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
 };
+//end of datepicker functions
 
-//end of datepicker functions s
-
-run(['$templateCache',function($templateCache){
+app.run(['$templateCache',function($templateCache){
 	$templateCache.put('/dialogs/whatsyourname.html','<div class="modal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> User\'s Name</h4></div><div class="modal-body"><ng-form name="nameDialog" novalidate role="form"><div class="form-group input-group-lg" ng-class="{true: \'has-error\'}[nameDialog.username.$dirty && nameDialog.username.$invalid]"><label class="control-label" for="username">Name:</label><input type="text" class="form-control" name="username" id="username" ng-model="user.name" ng-keyup="hitEnter($event)" required><span class="help-block">Enter your full name, first &amp; last.</span></div></ng-form></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button><button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="(nameDialog.$dirty && nameDialog.$invalid) || nameDialog.$pristine">Save</button></div></div></div></div>');
 }]); // end run / controllers / module

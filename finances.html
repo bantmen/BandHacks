@@ -1,0 +1,62 @@
+<head>
+    <!-- call in table styling -->
+    <link href="css/tables.css" rel="stylesheet">
+    <link href="css/style2.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+
+</head>
+
+<div ng-controller="FinanceCtrl">
+    <div id="ctrl-wrapper">
+        <div class="page-header">
+            <h1 id="navs">Finances</h1>
+            <ul class="breadcrumb">
+                <li><a href="#">Dashboard</a></li>
+                <li class="active">Finances</li>
+            </ul>
+        </div><!-- end of header -->
+        <!-- ### CONTENT STARTS HERE ###-->
+
+        <!-- Income -->
+        <h1>Income</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Company</th>
+                    <th class="numeric">Price</th>
+                    <th class="numeric">Change</th>
+                    <th class="numeric">Change %</th>
+                    <th class="numeric">Open</th>
+                    <th class="numeric">High</th>
+                    <th class="numeric">Low</th>
+                    <th class="numeric">Volume</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>AAC</td>
+                    <td>AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+                    <td class="numeric">$1.38</td>
+                    <td class="numeric">-0.01</td>
+                    <td class="numeric">-0.36%</td>
+                    <td class="numeric">$1.39</td>
+                    <td class="numeric">$1.39</td>
+                    <td class="numeric">$1.38</td>
+                    <td class="numeric">9,395</td>
+                </tr>
+                </tbody>
+            </table>
+
+        <!-- Expenses -->
+        <h2>Expenses</h2>
+        <div class="col-lg-12" ng-controller="ExpenseCtrl">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Expenses</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- /. wrapper div -->
+</body>
