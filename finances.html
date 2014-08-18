@@ -19,28 +19,36 @@
         <!-- <h1>Income</h1> -->
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">Income</div>
+            <div class="panel-heading"><h3>Income</h3></div>
             <div class="panel-body">
-                <p>...</p>
+                <p>From: Date</p>
+                <p>To: Date</p>
             </div>
 
             <!-- Table -->
             <table class="table">
                 <thead>
-                    <td>Date</td><td>Description</td><td class="numeric">Amount</td><td>Category</td>
+                    <td><b>Date</b></td><td><b>Description</b></td><td class="numeric"><b>Amount</b></td><td><b>Category</b></td>
                 </thead>
             </table>
         </div>
 
         <!-- Expenses -->
-        <h1>Expenses</h1>
-        <div class="col-lg-12" ng-controller="ExpenseCtrl">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Expenses</h3>
-                </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><h3>Expenses</h3></div>
+            <div class="panel-body">
+                <p>From: Date</p>
+                <p>To: Date</p>
             </div>
-        </div>
-    </div>
-</div> <!-- /. wrapper div -->
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <td><b>Date</b></td><td><b>Description</b></td><td class="numeric"><b>Amount</b></td><td><b>Category</b></td>
+                </thead>
+            </table>
+        </div><!-- /. # End of Expenses -->
+    </div><!-- /. # End of Ctrl Wrapper -->
+</div> <!-- /. # End of FinanceCtrl div -->
 </body>
