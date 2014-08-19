@@ -1,7 +1,8 @@
 <head>
     <!-- call in table styling -->
     <link href="css/tables.css" rel="stylesheet">
-
+    <link href="css/nv.d3.css" rel="stylesheet">
+    <link href="expense-tracker-style.css">
 </head>
 
 <div ng-controller="FinanceCtrl">
@@ -49,6 +50,28 @@
                 </thead>
             </table>
         </div><!-- /. # End of Expenses -->
+
+        <!-- Expense Charts -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="myheader">Expense Chart</h2>
+                    <div ng-controller="ChartController">
+                        <nvd3-discrete-bar-chart
+                                data="trueData"
+                                id="exampleId"
+                                tooltips="true"
+                                showXAxis="true"
+                                showYAxis="true"
+                                showValues="true"
+                                staggerLabels="false"
+                                color="colorFunction()">
+                            <svg></svg>
+                        </nvd3-discrete-bar-chart>
+                    </div>
+                </div>
+            </div>
+        </div><!-- #End of Expense Charts -->
     </div><!-- /. # End of Ctrl Wrapper -->
 </div> <!-- /. # End of FinanceCtrl div -->
 </body>
