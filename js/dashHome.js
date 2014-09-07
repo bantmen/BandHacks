@@ -1,15 +1,10 @@
 var data = {
-    // A labels array that can contain any sort of values
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-    // Our series array that contains series objects or in this case series data arrays
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
     series: [
-        [5, 2, 4, 2, 0]
+        [12, 9, 7, 8, 9],
+        [2, 1, 3.5, 7, 3],
+        [1, 3, 4, 5, 6]
     ]
 };
 
-// As options we currently only set a static size of 300x200 px. We can also omit this and use aspect ratio containers
-// as you saw in the previous example
-var options = {
-    width: 300,
-    height: 200
-};
+Chartist.Line('.ct-chart', data);
