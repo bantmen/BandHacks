@@ -1,8 +1,10 @@
 var data = {
-  // A labels array that can contain any sort of values
-  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-  // Our series array that contains series objects or in this case series data arrays
-  series: [
-    [5, 2, 4, 2, 0]
-  ]
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    series: [
+        [12, 9, 7, 8, 9],
+        [2, 1, 3.5, 7, 3],
+        [1, 3, 4, 5, 6]
+    ]
 };
+
+Chartist.Line('.ct-chart', data);

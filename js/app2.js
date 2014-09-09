@@ -10,11 +10,14 @@ var app = angular.module('myApp', ['ngRoute', 'fundoo.services'])
     $routeProvider.when('/finances', {
         templateUrl: "finances.html"
     });
-    $routeProvider.when('/merch.html', {
+    $routeProvider.when('/merch', {
         templateUrl: "merch.html"
     });
-    $routeProvider.when('/contacts.html', {
+    $routeProvider.when('/contacts', {
         templateUrl: "contacts.html"
+    });
+    $routeProvider.when('/dashhome', {
+        templateUrl: "dashhome.html"
     });
 //	.otherwise({redirectTo: '/dashboard.html'});
 })
